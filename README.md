@@ -1,7 +1,7 @@
 # ThermoOpt-RL
 
 **AI-driven data-centre cooling, workload optimisation and carbon-aware scheduling using reinforcement learning**
-(B.Tech AI/ML final-year project, Phase 1)
+(B.Tech AI/RL Project, Phase 1)
 
 > ThermoOpt-RL runs on a **simulated digital twin** of a small data centre. It is not connected to any real
 > facility. All grid prices and carbon intensities are synthetic.
