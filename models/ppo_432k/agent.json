@@ -1,0 +1,53 @@
+{
+ "algorithm": "ppo",
+ "obs_dim": 30,
+ "n_actions": 18,
+ "architecture": {
+  "actor": "Sequential(\n  (0): Linear(in_features=30, out_features=128, bias=True)\n  (1): Tanh()\n  (2): Linear(in_features=128, out_features=128, bias=True)\n  (3): Tanh()\n  (4): Linear(in_features=128, out_features=18, bias=True)\n)",
+  "critic": "Sequential(\n  (0): Linear(in_features=30, out_features=128, bias=True)\n  (1): Tanh()\n  (2): Linear(in_features=128, out_features=128, bias=True)\n  (3): Tanh()\n  (4): Linear(in_features=128, out_features=1, bias=True)\n)"
+ },
+ "device": "cpu",
+ "env_steps": 430080,
+ "updates": 210,
+ "gradient_steps": 67200,
+ "episodes_trained": 298,
+ "hyperparameters": {
+  "hidden_sizes": [
+   128,
+   128
+  ],
+  "learning_rate": 0.0003,
+  "gamma": 0.99,
+  "gae_lambda": 0.95,
+  "clip_epsilon": 0.2,
+  "entropy_coefficient": 0.01,
+  "value_coefficient": 0.5,
+  "max_grad_norm": 0.5,
+  "rollout_steps": 2048,
+  "update_epochs": 10,
+  "minibatch_size": 64,
+  "use_action_mask": true,
+  "normalize_advantages": true,
+  "truncation_is_terminal": false,
+  "seed": 42
+ },
+ "checkpoint": "ppo.pt",
+ "training": {
+  "requested_timesteps": 432000,
+  "total_env_steps": 430080,
+  "rollouts": 210,
+  "gradient_steps": 67200,
+  "episodes_completed": 298,
+  "episode_minutes": 1440,
+  "design_protocol": false,
+  "seconds": 1812.2526500999993,
+  "device": "cpu",
+  "torch_threads": 1,
+  "torch_version": "2.14.0+cpu",
+  "randomize_start_hour": true,
+  "env_seed_strategy": "episode e: derive_seed(seed, 'ppo', 'episode', e)",
+  "rng_streams": "init / sampling / minibatch: derive_seed(seed, 'ppo', <name>)",
+  "episode_csv": "C:\\Users\\sanya\\ThermoOpt\\experiments\\ppo_432k_training.csv",
+  "update_csv": "C:\\Users\\sanya\\ThermoOpt\\experiments\\ppo_432k_updates.csv"
+ }
+}

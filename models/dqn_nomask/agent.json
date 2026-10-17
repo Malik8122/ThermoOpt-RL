@@ -1,0 +1,50 @@
+{
+ "algorithm": "dqn",
+ "obs_dim": 30,
+ "n_actions": 18,
+ "architecture": "Sequential(\n  (0): Linear(in_features=30, out_features=128, bias=True)\n  (1): ReLU()\n  (2): Linear(in_features=128, out_features=128, bias=True)\n  (3): ReLU()\n  (4): Linear(in_features=128, out_features=18, bias=True)\n)",
+ "device": "cpu",
+ "epsilon_at_save": 0.050000000000000044,
+ "env_steps": 432000,
+ "training_updates": 431001,
+ "target_updates": 4310,
+ "episodes_trained": 300,
+ "hyperparameters": {
+  "hidden_sizes": [
+   128,
+   128
+  ],
+  "learning_rate": 0.001,
+  "gamma": 0.95,
+  "batch_size": 64,
+  "replay_buffer_size": 10000,
+  "target_update_frequency": 100,
+  "epsilon_start": 1.0,
+  "epsilon_end": 0.05,
+  "epsilon_decay_steps": 50000,
+  "learning_starts": 1000,
+  "train_frequency": 1,
+  "max_grad_norm": 10.0,
+  "loss": "huber",
+  "use_action_mask": false,
+  "truncation_is_terminal": true,
+  "seed": 42
+ },
+ "checkpoint": "dqn.pt",
+ "training": {
+  "episodes": 300,
+  "episode_minutes": 1440,
+  "total_env_steps": 432000,
+  "training_updates": 431001,
+  "target_updates": 4310,
+  "full_protocol": true,
+  "seconds": 3855.6831231999968,
+  "device": "cpu",
+  "torch_threads": 1,
+  "torch_version": "2.14.0+cpu",
+  "randomize_start_hour": true,
+  "env_seed_strategy": "episode e: derive_seed(seed, 'dqn', 'episode', e)",
+  "rng_streams": "init: derive_seed(seed,'dqn','init'); exploration: ...'exploration'; replay: ...'replay'",
+  "training_csv": "C:\\Users\\sanya\\ThermoOpt\\experiments\\dqn_nomask_training.csv"
+ }
+}

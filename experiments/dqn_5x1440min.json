@@ -1,0 +1,1594 @@
+{
+  "config": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "episode_minutes": 1440,
+    "start_hour": 8.0,
+    "greedy_epsilon": 0.0,
+    "device": "cpu"
+  },
+  "training": {
+    "masked": {
+      "episodes": 300,
+      "episode_minutes": 1440,
+      "total_env_steps": 432000,
+      "training_updates": 431001,
+      "target_updates": 4310,
+      "full_protocol": true,
+      "seconds": 3782.3568500999827,
+      "device": "cpu",
+      "torch_threads": 1,
+      "torch_version": "2.14.0+cpu",
+      "randomize_start_hour": true,
+      "env_seed_strategy": "episode e: derive_seed(seed, 'dqn', 'episode', e)",
+      "rng_streams": "init: derive_seed(seed,'dqn','init'); exploration: ...'exploration'; replay: ...'replay'",
+      "training_csv": "C:\\Users\\sanya\\ThermoOpt\\experiments\\dqn_training.csv",
+      "summary": {
+        "episodes": 300,
+        "first_30": {
+          "total_reward": -1118.205756118928,
+          "energy_kwh": 511.4345373784843,
+          "carbon_kg": 217.61324456507344,
+          "sla_failures": 112.1,
+          "critical_rack_minutes": 241.7,
+          "invalid_action_rate": 0.0,
+          "mean_loss": 0.3140725738419718,
+          "mean_q": -3.4089584560355966,
+          "epsilon": 0.5759200000000001
+        },
+        "last_30": {
+          "total_reward": -889.1241826135252,
+          "energy_kwh": 537.9494606780905,
+          "carbon_kg": 227.42835334474483,
+          "sla_failures": 104.86666666666666,
+          "critical_rack_minutes": 40.2,
+          "invalid_action_rate": 0.0,
+          "mean_loss": 0.3281742530255751,
+          "mean_q": -6.9577988704156,
+          "epsilon": 0.050000000000000044
+        },
+        "env_steps": 432000,
+        "training_updates": 431001,
+        "target_updates": 4310,
+        "explore_steps": 45468,
+        "exploit_steps": 386532,
+        "max_loss": 1.2116105556488037
+      }
+    },
+    "no mask": {
+      "episodes": 300,
+      "episode_minutes": 1440,
+      "total_env_steps": 432000,
+      "training_updates": 431001,
+      "target_updates": 4310,
+      "full_protocol": true,
+      "seconds": 3855.6831231999968,
+      "device": "cpu",
+      "torch_threads": 1,
+      "torch_version": "2.14.0+cpu",
+      "randomize_start_hour": true,
+      "env_seed_strategy": "episode e: derive_seed(seed, 'dqn', 'episode', e)",
+      "rng_streams": "init: derive_seed(seed,'dqn','init'); exploration: ...'exploration'; replay: ...'replay'",
+      "training_csv": "C:\\Users\\sanya\\ThermoOpt\\experiments\\dqn_nomask_training.csv",
+      "summary": {
+        "episodes": 300,
+        "first_30": {
+          "total_reward": -1333.6302593588418,
+          "energy_kwh": 514.5314662365971,
+          "carbon_kg": 218.69005630816238,
+          "sla_failures": 156.93333333333334,
+          "critical_rack_minutes": 215.2,
+          "invalid_action_rate": 0.3319907407407407,
+          "mean_loss": 0.44510655512009206,
+          "mean_q": -0.5877273327488212,
+          "epsilon": 0.5759200000000001
+        },
+        "last_30": {
+          "total_reward": -1613.0717799759973,
+          "energy_kwh": 436.91035248477,
+          "carbon_kg": 184.94485771459318,
+          "sla_failures": 271.3666666666667,
+          "critical_rack_minutes": 34.6,
+          "invalid_action_rate": 0.36212962962962963,
+          "mean_loss": 0.7264515366412148,
+          "mean_q": -8.597926087975502,
+          "epsilon": 0.050000000000000044
+        },
+        "env_steps": 432000,
+        "training_updates": 431001,
+        "target_updates": 4310,
+        "explore_steps": 45468,
+        "exploit_steps": 386532,
+        "max_loss": 1.895775556564331
+      }
+    }
+  },
+  "hyperparameters": {
+    "hidden_sizes": [
+      128,
+      128
+    ],
+    "learning_rate": 0.001,
+    "gamma": 0.95,
+    "batch_size": 64,
+    "replay_buffer_size": 10000,
+    "target_update_frequency": 100,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.05,
+    "epsilon_decay_steps": 50000,
+    "learning_starts": 1000,
+    "train_frequency": 1,
+    "max_grad_norm": 10.0,
+    "loss": "huber",
+    "use_action_mask": true,
+    "truncation_is_terminal": true,
+    "seed": 42
+  },
+  "architecture": "Sequential(\n  (0): Linear(in_features=30, out_features=128, bias=True)\n  (1): ReLU()\n  (2): Linear(in_features=128, out_features=128, bias=True)\n  (3): ReLU()\n  (4): Linear(in_features=128, out_features=18, bias=True)\n)",
+  "summary": {
+    "total_reward": {
+      "mean": -693.0577715545448,
+      "std": 101.54861244953446
+    },
+    "energy_kwh": {
+      "mean": 574.7488468522548,
+      "std": 22.92990543502836
+    },
+    "it_energy_kwh": {
+      "mean": 381.78362999999865,
+      "std": 10.697225744019978
+    },
+    "cooling_energy_kwh": {
+      "mean": 192.9652168522561,
+      "std": 12.663862392721226
+    },
+    "cost_inr": {
+      "mean": 4501.750018242003,
+      "std": 182.64591126668896
+    },
+    "carbon_kg": {
+      "mean": 240.67406442887832,
+      "std": 10.872141096700728
+    },
+    "mean_temperature_c": {
+      "mean": 22.66111126086786,
+      "std": 0.15095823119552276
+    },
+    "peak_temperature_c": {
+      "mean": 31.65259134937063,
+      "std": 1.2486695233345588
+    },
+    "critical_rack_minutes": {
+      "mean": 31.2,
+      "std": 23.721298446754556
+    },
+    "warning_or_worse_rack_minutes": {
+      "mean": 434.4,
+      "std": 65.61859492552396
+    },
+    "sla_failures": {
+      "mean": 60.8,
+      "std": 23.615672761960436
+    },
+    "completed_jobs": {
+      "mean": 371.0,
+      "std": 10.44030650891055
+    },
+    "delayed_jobs": {
+      "mean": 93.6,
+      "std": 21.66333307688362
+    },
+    "mean_completion_minutes": {
+      "mean": 30.390908709833333,
+      "std": 1.7657331518989476
+    },
+    "cooling_changes": {
+      "mean": 838.4,
+      "std": 84.88403854671382
+    },
+    "migrations": {
+      "mean": 244.6,
+      "std": 45.62126697056977
+    },
+    "invalid_action_rate": {
+      "mean": 0.0,
+      "std": 0.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 42,
+      "total_reward": -527.4721737421214,
+      "energy_kwh": 550.6681970205273,
+      "it_energy_kwh": 369.2898166666652,
+      "cooling_energy_kwh": 181.37838035386204,
+      "cost_inr": 4278.764589617141,
+      "carbon_kg": 229.22720593538477,
+      "mean_temperature_c": 22.715739652435595,
+      "peak_temperature_c": 31.540526409140515,
+      "critical_rack_minutes": 63,
+      "warning_or_worse_rack_minutes": 483,
+      "sla_failures": 23,
+      "completed_jobs": 386,
+      "delayed_jobs": 66,
+      "mean_completion_minutes": 27.493333333333332,
+      "cooling_changes": 733,
+      "migrations": 187,
+      "invalid_action_rate": 0.0,
+      "reward_by_component": {
+        "energy": -238.2698929415751,
+        "carbon": -127.16006246415589,
+        "thermal": -63.806726845738744,
+        "sla": -106.43549149065336,
+        "action": -22.999999999999872,
+        "completion": 31.20000000000009
+      }
+    },
+    {
+      "seed": 43,
+      "total_reward": -691.1474425344037,
+      "energy_kwh": 574.2361773600612,
+      "it_energy_kwh": 383.504899999998,
+      "cooling_energy_kwh": 190.7312773600632,
+      "cost_inr": 4510.369017474237,
+      "carbon_kg": 240.47060729723117,
+      "mean_temperature_c": 22.683471487217293,
+      "peak_temperature_c": 33.152012802697946,
+      "critical_rack_minutes": 42,
+      "warning_or_worse_rack_minutes": 467,
+      "sla_failures": 58,
+      "completed_jobs": 370,
+      "delayed_jobs": 82,
+      "mean_completion_minutes": 29.919220055710305,
+      "cooling_changes": 766,
+      "migrations": 259,
+      "invalid_action_rate": 0.0,
+      "reward_by_component": {
+        "energy": -248.4675767423354,
+        "carbon": -133.39715641488417,
+        "thermal": -47.21302636952465,
+        "sla": -264.7446830076587,
+        "action": -25.624999999999822,
+        "completion": 28.300000000000075
+      }
+    },
+    {
+      "seed": 44,
+      "total_reward": -802.8139178244694,
+      "energy_kwh": 609.221083403191,
+      "it_energy_kwh": 395.3720166666656,
+      "cooling_energy_kwh": 213.8490667365254,
+      "cost_inr": 4766.663298354399,
+      "carbon_kg": 257.40769533981546,
+      "mean_temperature_c": 22.39702056026971,
+      "peak_temperature_c": 29.728844752066234,
+      "critical_rack_minutes": 0,
+      "warning_or_worse_rack_minutes": 321,
+      "sla_failures": 86,
+      "completed_jobs": 376,
+      "delayed_jobs": 124,
+      "mean_completion_minutes": 31.317808219178083,
+      "cooling_changes": 930,
+      "migrations": 211,
+      "invalid_action_rate": 0.0,
+      "reward_by_component": {
+        "energy": -263.6052764725352,
+        "carbon": -142.7927304030045,
+        "thermal": -7.0308442781820935,
+        "sla": -391.51006667074773,
+        "action": -28.524999999999643,
+        "completion": 30.650000000000105
+      }
+    },
+    {
+      "seed": 45,
+      "total_reward": -729.4406648341389,
+      "energy_kwh": 557.8542610730066,
+      "it_energy_kwh": 372.957633333333,
+      "cooling_energy_kwh": 184.8966277396736,
+      "cost_inr": 4398.422800391854,
+      "carbon_kg": 233.19239700254263,
+      "mean_temperature_c": 22.740139620623165,
+      "peak_temperature_c": 32.17693179611102,
+      "critical_rack_minutes": 19,
+      "warning_or_worse_rack_minutes": 436,
+      "sla_failures": 73,
+      "completed_jobs": 360,
+      "delayed_jobs": 95,
+      "mean_completion_minutes": 31.53757225433526,
+      "cooling_changes": 868,
+      "migrations": 302,
+      "invalid_action_rate": 0.0,
+      "reward_by_component": {
+        "energy": -241.37924757966678,
+        "carbon": -129.35968768632134,
+        "thermal": -25.739806066547178,
+        "sla": -332.5119235016045,
+        "action": -29.249999999999627,
+        "completion": 28.8000000000001
+      }
+    },
+    {
+      "seed": 46,
+      "total_reward": -714.4146588375908,
+      "energy_kwh": 581.7645154044878,
+      "it_energy_kwh": 387.7937833333314,
+      "cooling_energy_kwh": 193.97073207115642,
+      "cost_inr": 4554.53038537238,
+      "carbon_kg": 243.0724165694175,
+      "mean_temperature_c": 22.76918498379352,
+      "peak_temperature_c": 31.664640986837437,
+      "critical_rack_minutes": 32,
+      "warning_or_worse_rack_minutes": 465,
+      "sla_failures": 64,
+      "completed_jobs": 363,
+      "delayed_jobs": 101,
+      "mean_completion_minutes": 31.686609686609685,
+      "cooling_changes": 895,
+      "migrations": 264,
+      "invalid_action_rate": 0.0,
+      "reward_by_component": {
+        "energy": -251.72503070386543,
+        "carbon": -134.8404677714964,
+        "thermal": -36.68787299721096,
+        "sla": -292.2862873650168,
+        "action": -28.974999999999607,
+        "completion": 30.10000000000009
+      }
+    }
+  ],
+  "ablation_no_mask": {
+    "summary": {
+      "total_reward": {
+        "mean": -1613.700817775588,
+        "std": 102.48557463305426
+      },
+      "energy_kwh": {
+        "mean": 393.2949575137242,
+        "std": 41.427161496616506
+      },
+      "it_energy_kwh": {
+        "mean": 271.10946333333493,
+        "std": 21.01321023158285
+      },
+      "cooling_energy_kwh": {
+        "mean": 122.18549418038928,
+        "std": 20.5531478807083
+      },
+      "cost_inr": {
+        "mean": 2991.8666236261242,
+        "std": 328.2488239736909
+      },
+      "carbon_kg": {
+        "mean": 166.95712815833582,
+        "std": 18.0665008520977
+      },
+      "mean_temperature_c": {
+        "mean": 22.393692734213353,
+        "std": 0.22093578009471376
+      },
+      "peak_temperature_c": {
+        "mean": 33.24460070508291,
+        "std": 2.749871769848031
+      },
+      "critical_rack_minutes": {
+        "mean": 30.8,
+        "std": 18.308467986153293
+      },
+      "warning_or_worse_rack_minutes": {
+        "mean": 231.8,
+        "std": 31.68911485037094
+      },
+      "sla_failures": {
+        "mean": 277.0,
+        "std": 21.72556098240043
+      },
+      "completed_jobs": {
+        "mean": 154.6,
+        "std": 23.839043604977107
+      },
+      "delayed_jobs": {
+        "mean": 104.4,
+        "std": 7.231873892705817
+      },
+      "mean_completion_minutes": {
+        "mean": 65.73579173177862,
+        "std": 6.192099051708485
+      },
+      "cooling_changes": {
+        "mean": 198.0,
+        "std": 64.02343321003646
+      },
+      "migrations": {
+        "mean": 137.8,
+        "std": 52.73234301640692
+      },
+      "invalid_action_rate": {
+        "mean": 0.48083333333333333,
+        "std": 0.06401444486390998
+      }
+    },
+    "episodes": [
+      {
+        "seed": 42,
+        "total_reward": -1462.0153902124944,
+        "energy_kwh": 394.24122112144113,
+        "it_energy_kwh": 271.67400000000066,
+        "cooling_energy_kwh": 122.56722112144045,
+        "cost_inr": 3027.945898775275,
+        "carbon_kg": 169.0200465339078,
+        "mean_temperature_c": 22.352322658401363,
+        "peak_temperature_c": 32.72382900926064,
+        "critical_rack_minutes": 51,
+        "warning_or_worse_rack_minutes": 246,
+        "sla_failures": 243,
+        "completed_jobs": 165,
+        "delayed_jobs": 106,
+        "mean_completion_minutes": 69.85064935064935,
+        "cooling_changes": 182,
+        "migrations": 122,
+        "invalid_action_rate": 0.40208333333333335,
+        "reward_by_component": {
+          "energy": -170.58514375446995,
+          "carbon": -93.76112048848427,
+          "thermal": -47.338004666574186,
+          "sla": -1097.6811213029669,
+          "action": -65.50000000000041,
+          "completion": 12.850000000000001
+        }
+      },
+      {
+        "seed": 43,
+        "total_reward": -1718.7539776048227,
+        "energy_kwh": 343.9819571559228,
+        "it_energy_kwh": 244.5035666666686,
+        "cooling_energy_kwh": 99.47839048925424,
+        "cost_inr": 2608.4327388023294,
+        "carbon_kg": 146.39754651927328,
+        "mean_temperature_c": 22.532982013750203,
+        "peak_temperature_c": 36.399901537874854,
+        "critical_rack_minutes": 47,
+        "warning_or_worse_rack_minutes": 211,
+        "sla_failures": 300,
+        "completed_jobs": 129,
+        "delayed_jobs": 92,
+        "mean_completion_minutes": 58.644067796610166,
+        "cooling_changes": 133,
+        "migrations": 79,
+        "invalid_action_rate": 0.5534722222222223,
+        "reward_by_component": {
+          "energy": -148.83834684631054,
+          "carbon": -81.21165672296975,
+          "thermal": -59.65115893498752,
+          "sla": -1353.1028151005573,
+          "action": -84.9999999999995,
+          "completion": 9.049999999999997
+        }
+      },
+      {
+        "seed": 44,
+        "total_reward": -1653.8538839669445,
+        "energy_kwh": 458.0407004452551,
+        "it_energy_kwh": 302.6299166666674,
+        "cooling_energy_kwh": 155.4107837785877,
+        "cost_inr": 3505.245274898351,
+        "carbon_kg": 195.1863540074608,
+        "mean_temperature_c": 22.040373494922424,
+        "peak_temperature_c": 30.579214089429797,
+        "critical_rack_minutes": 21,
+        "warning_or_worse_rack_minutes": 232,
+        "sla_failures": 280,
+        "completed_jobs": 184,
+        "delayed_jobs": 111,
+        "mean_completion_minutes": 68.63583815028902,
+        "cooling_changes": 305,
+        "migrations": 218,
+        "invalid_action_rate": 0.42777777777777776,
+        "reward_by_component": {
+          "energy": -198.1906876926579,
+          "carbon": -108.27645377632807,
+          "thermal": -22.65166983824102,
+          "sla": -1264.2100726597196,
+          "action": -74.67499999999988,
+          "completion": 14.150000000000006
+        }
+      },
+      {
+        "seed": 45,
+        "total_reward": -1560.6586366121735,
+        "energy_kwh": 377.8245111440926,
+        "it_energy_kwh": 263.39606666666964,
+        "cooling_energy_kwh": 114.42844447742294,
+        "cost_inr": 2857.249017578251,
+        "carbon_kg": 157.94408888636875,
+        "mean_temperature_c": 22.430046117682473,
+        "peak_temperature_c": 30.718839703875595,
+        "critical_rack_minutes": 7,
+        "warning_or_worse_rack_minutes": 276,
+        "sla_failures": 272,
+        "completed_jobs": 164,
+        "delayed_jobs": 107,
+        "mean_completion_minutes": 59.54,
+        "cooling_changes": 177,
+        "migrations": 113,
+        "invalid_action_rate": 0.5236111111111111,
+        "reward_by_component": {
+          "energy": -163.48175962965422,
+          "carbon": -87.61691321359208,
+          "thermal": -11.814923907156526,
+          "sla": -1227.7450398617716,
+          "action": -82.64999999999955,
+          "completion": 12.650000000000007
+        }
+      },
+      {
+        "seed": 46,
+        "total_reward": -1673.2222004815042,
+        "energy_kwh": 392.3863977019093,
+        "it_energy_kwh": 273.34376666666816,
+        "cooling_energy_kwh": 119.04263103524113,
+        "cost_inr": 2960.460188076414,
+        "carbon_kg": 166.23760484466845,
+        "mean_temperature_c": 22.6127393863103,
+        "peak_temperature_c": 35.80121918497366,
+        "critical_rack_minutes": 28,
+        "warning_or_worse_rack_minutes": 194,
+        "sla_failures": 290,
+        "completed_jobs": 131,
+        "delayed_jobs": 106,
+        "mean_completion_minutes": 72.00840336134453,
+        "cooling_changes": 193,
+        "migrations": 157,
+        "invalid_action_rate": 0.49722222222222223,
+        "reward_by_component": {
+          "energy": -169.78257592871006,
+          "carbon": -92.21760623779704,
+          "thermal": -33.57506228071636,
+          "sla": -1307.8969560342803,
+          "action": -80.34999999999962,
+          "completion": 10.599999999999996
+        }
+      }
+    ]
+  },
+  "comparison": [
+    {
+      "controller": "random",
+      "source": "Step 6 (inherited)",
+      "total_reward": {
+        "mean": -1588.2137361501314,
+        "std": 192.91332285930648
+      },
+      "energy_kwh": {
+        "mean": 557.4346597747812,
+        "std": 16.247233906669205
+      },
+      "carbon_kg": {
+        "mean": 240.344096491426,
+        "std": 6.683724640413814
+      },
+      "cost_inr": {
+        "mean": 4297.144948101203,
+        "std": 125.17027570979461
+      },
+      "critical_rack_minutes": {
+        "mean": 716.8,
+        "std": 149.5784075326382
+      },
+      "sla_failures": {
+        "mean": 96.0,
+        "std": 25.10975905897944
+      },
+      "invalid_action_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "controller": "round_robin",
+      "source": "Step 6 (inherited)",
+      "total_reward": {
+        "mean": -668.9289836026444,
+        "std": 113.27120614794629
+      },
+      "energy_kwh": {
+        "mean": 614.2559533333279,
+        "std": 10.853302820074408
+      },
+      "carbon_kg": {
+        "mean": 263.02672087765166,
+        "std": 5.101544748180714
+      },
+      "cost_inr": {
+        "mean": 4736.944836010119,
+        "std": 88.0939187223684
+      },
+      "critical_rack_minutes": {
+        "mean": 26.0,
+        "std": 7.0
+      },
+      "sla_failures": {
+        "mean": 56.0,
+        "std": 22.847319317591726
+      },
+      "invalid_action_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "controller": "rule_based",
+      "source": "Step 6 (inherited)",
+      "total_reward": {
+        "mean": -687.9500884152023,
+        "std": 116.71473216722026
+      },
+      "energy_kwh": {
+        "mean": 566.6374758436643,
+        "std": 19.68692670352286
+      },
+      "carbon_kg": {
+        "mean": 238.63688949510043,
+        "std": 9.223006063649775
+      },
+      "cost_inr": {
+        "mean": 4409.48426753869,
+        "std": 164.18500920507717
+      },
+      "critical_rack_minutes": {
+        "mean": 24.8,
+        "std": 7.224956747275377
+      },
+      "sla_failures": {
+        "mean": 63.2,
+        "std": 23.28518842526296
+      },
+      "invalid_action_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "controller": "policy_iteration",
+      "source": "Step 7 (inherited)",
+      "total_reward": {
+        "mean": -1207.9211562156936,
+        "std": 108.48933886749757
+      },
+      "energy_kwh": {
+        "mean": 499.19543587363677,
+        "std": 12.34396987454142
+      },
+      "carbon_kg": {
+        "mean": 217.94766939833244,
+        "std": 5.219960884780976
+      },
+      "cost_inr": {
+        "mean": 3900.7868973684117,
+        "std": 94.7344851437472
+      },
+      "critical_rack_minutes": {
+        "mean": 0.4,
+        "std": 0.894427190999916
+      },
+      "sla_failures": {
+        "mean": 191.2,
+        "std": 23.188359148503803
+      },
+      "invalid_action_rate": {
+        "mean": 0.1309722222222222,
+        "std": 0.05214487105325406
+      }
+    },
+    {
+      "controller": "value_iteration",
+      "source": "Step 8 (inherited)",
+      "total_reward": {
+        "mean": -1207.9211562156936,
+        "std": 108.48933886749757
+      },
+      "energy_kwh": {
+        "mean": 499.19543587363677,
+        "std": 12.34396987454142
+      },
+      "carbon_kg": {
+        "mean": 217.94766939833244,
+        "std": 5.219960884780976
+      },
+      "cost_inr": {
+        "mean": 3900.7868973684117,
+        "std": 94.7344851437472
+      },
+      "critical_rack_minutes": {
+        "mean": 0.4,
+        "std": 0.894427190999916
+      },
+      "sla_failures": {
+        "mean": 191.2,
+        "std": 23.188359148503803
+      },
+      "invalid_action_rate": {
+        "mean": 0.1309722222222222,
+        "std": 0.05214487105325406
+      }
+    },
+    {
+      "controller": "q_learning",
+      "source": "Step 9 (inherited)",
+      "total_reward": {
+        "mean": -751.2419473061198,
+        "std": 121.23808608966736
+      },
+      "energy_kwh": {
+        "mean": 575.8978196179835,
+        "std": 17.492312458912377
+      },
+      "carbon_kg": {
+        "mean": 244.20556934504043,
+        "std": 8.487955328288958
+      },
+      "cost_inr": {
+        "mean": 4478.702338740718,
+        "std": 135.51794059250813
+      },
+      "critical_rack_minutes": {
+        "mean": 6.0,
+        "std": 6.96419413859206
+      },
+      "sla_failures": {
+        "mean": 80.2,
+        "std": 24.38647165950827
+      },
+      "invalid_action_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "controller": "dqn",
+      "source": "Step 10 (this run)",
+      "total_reward": {
+        "mean": -693.0577715545448,
+        "std": 101.54861244953446
+      },
+      "energy_kwh": {
+        "mean": 574.7488468522548,
+        "std": 22.92990543502836
+      },
+      "carbon_kg": {
+        "mean": 240.67406442887832,
+        "std": 10.872141096700728
+      },
+      "cost_inr": {
+        "mean": 4501.750018242003,
+        "std": 182.64591126668896
+      },
+      "critical_rack_minutes": {
+        "mean": 31.2,
+        "std": 23.721298446754556
+      },
+      "sla_failures": {
+        "mean": 60.8,
+        "std": 23.615672761960436
+      },
+      "invalid_action_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      }
+    },
+    {
+      "controller": "dqn_no_mask_ablation",
+      "source": "Step 10 (this run)",
+      "total_reward": {
+        "mean": -1613.700817775588,
+        "std": 102.48557463305426
+      },
+      "energy_kwh": {
+        "mean": 393.2949575137242,
+        "std": 41.427161496616506
+      },
+      "carbon_kg": {
+        "mean": 166.95712815833582,
+        "std": 18.0665008520977
+      },
+      "cost_inr": {
+        "mean": 2991.8666236261242,
+        "std": 328.2488239736909
+      },
+      "critical_rack_minutes": {
+        "mean": 30.8,
+        "std": 18.308467986153293
+      },
+      "sla_failures": {
+        "mean": 277.0,
+        "std": 21.72556098240043
+      },
+      "invalid_action_rate": {
+        "mean": 0.48083333333333333,
+        "std": 0.06401444486390998
+      }
+    }
+  ],
+  "action_frequency_in_evaluation": [
+    {
+      "action": "place head job on Rack 1 + decrease cooling",
+      "masked": 892,
+      "no_mask": 0
+    },
+    {
+      "action": "place head job on Rack 1 + maintain cooling",
+      "masked": 49,
+      "no_mask": 134
+    },
+    {
+      "action": "place head job on Rack 1 + increase cooling",
+      "masked": 308,
+      "no_mask": 7
+    },
+    {
+      "action": "place head job on Rack 2 + decrease cooling",
+      "masked": 252,
+      "no_mask": 112
+    },
+    {
+      "action": "place head job on Rack 2 + maintain cooling",
+      "masked": 75,
+      "no_mask": 937
+    },
+    {
+      "action": "place head job on Rack 2 + increase cooling",
+      "masked": 108,
+      "no_mask": 0
+    },
+    {
+      "action": "place head job on Rack 3 + decrease cooling",
+      "masked": 222,
+      "no_mask": 11
+    },
+    {
+      "action": "place head job on Rack 3 + maintain cooling",
+      "masked": 381,
+      "no_mask": 67
+    },
+    {
+      "action": "place head job on Rack 3 + increase cooling",
+      "masked": 14,
+      "no_mask": 7
+    },
+    {
+      "action": "place head job on Rack 4 + decrease cooling",
+      "masked": 0,
+      "no_mask": 435
+    },
+    {
+      "action": "place head job on Rack 4 + maintain cooling",
+      "masked": 1723,
+      "no_mask": 1813
+    },
+    {
+      "action": "place head job on Rack 4 + increase cooling",
+      "masked": 22,
+      "no_mask": 119
+    },
+    {
+      "action": "delay head job + decrease cooling",
+      "masked": 496,
+      "no_mask": 333
+    },
+    {
+      "action": "delay head job + maintain cooling",
+      "masked": 112,
+      "no_mask": 1240
+    },
+    {
+      "action": "delay head job + increase cooling",
+      "masked": 1323,
+      "no_mask": 0
+    },
+    {
+      "action": "migrate from hottest rack + decrease cooling",
+      "masked": 240,
+      "no_mask": 146
+    },
+    {
+      "action": "migrate from hottest rack + maintain cooling",
+      "masked": 668,
+      "no_mask": 244
+    },
+    {
+      "action": "migrate from hottest rack + increase cooling",
+      "masked": 315,
+      "no_mask": 1595
+    }
+  ],
+  "state_information": {
+    "observations": 7200,
+    "feature_ranges": [
+      {
+        "feature": "rack1_temperature",
+        "min": 0.0,
+        "max": 0.564645528793335,
+        "mean": 0.20752142369747162,
+        "std": 0.1327812522649765
+      },
+      {
+        "feature": "rack2_temperature",
+        "min": 0.0,
+        "max": 0.6444059610366821,
+        "mean": 0.1899597942829132,
+        "std": 0.14455556869506836
+      },
+      {
+        "feature": "rack3_temperature",
+        "min": 0.0,
+        "max": 0.688727855682373,
+        "mean": 0.23475229740142822,
+        "std": 0.13059568405151367
+      },
+      {
+        "feature": "rack4_temperature",
+        "min": 0.0,
+        "max": 0.5952236652374268,
+        "mean": 0.21540884673595428,
+        "std": 0.13686832785606384
+      },
+      {
+        "feature": "rack1_cpu",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5156069397926331,
+        "std": 0.2893495559692383
+      },
+      {
+        "feature": "rack2_cpu",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.44991251826286316,
+        "std": 0.28281885385513306
+      },
+      {
+        "feature": "rack3_cpu",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.32383471727371216,
+        "std": 0.2304026186466217
+      },
+      {
+        "feature": "rack4_cpu",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5382847189903259,
+        "std": 0.29470568895339966
+      },
+      {
+        "feature": "rack1_gpu",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5018333196640015,
+        "std": 0.37671414017677307
+      },
+      {
+        "feature": "rack2_gpu",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.48617637157440186,
+        "std": 0.36671632528305054
+      },
+      {
+        "feature": "rack3_gpu",
+        "min": 0.0,
+        "max": 0.9900000095367432,
+        "mean": 0.5284486413002014,
+        "std": 0.38376760482788086
+      },
+      {
+        "feature": "rack4_gpu",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5002360939979553,
+        "std": 0.36926308274269104
+      },
+      {
+        "feature": "cooling_setpoint",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5021666884422302,
+        "std": 0.36775901913642883
+      },
+      {
+        "feature": "cooling_delivered",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5027535557746887,
+        "std": 0.3522803485393524
+      },
+      {
+        "feature": "queue_length",
+        "min": 0.0,
+        "max": 0.550000011920929,
+        "mean": 0.06805556267499924,
+        "std": 0.08666889369487762
+      },
+      {
+        "feature": "head_cpu",
+        "min": 0.0,
+        "max": 0.5,
+        "mean": 0.16646945476531982,
+        "std": 0.1632714420557022
+      },
+      {
+        "feature": "head_gpu",
+        "min": 0.0,
+        "max": 0.9900000095367432,
+        "mean": 0.28815558552742004,
+        "std": 0.3634357452392578
+      },
+      {
+        "feature": "head_urgency",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.3497181832790375,
+        "std": 0.3893216550350189
+      },
+      {
+        "feature": "head_flexible",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.379027783870697,
+        "std": 0.48514506220817566
+      },
+      {
+        "feature": "job_waiting",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5761111378669739,
+        "std": 0.494173139333725
+      },
+      {
+        "feature": "electricity_price",
+        "min": 0.6526315808296204,
+        "max": 1.0,
+        "mean": 0.8053926825523376,
+        "std": 0.11009972542524338
+      },
+      {
+        "feature": "carbon_intensity",
+        "min": 0.48076921701431274,
+        "max": 1.0,
+        "mean": 0.8349412679672241,
+        "std": 0.14806485176086426
+      },
+      {
+        "feature": "carbon_trend",
+        "min": -0.17282932996749878,
+        "max": 0.17081612348556519,
+        "mean": -1.3245476937484568e-10,
+        "std": 0.07192257046699524
+      },
+      {
+        "feature": "time_sin",
+        "min": -1.0,
+        "max": 1.0,
+        "mean": 0.0,
+        "std": 0.7071067690849304
+      },
+      {
+        "feature": "time_cos",
+        "min": -1.0,
+        "max": 1.0,
+        "mean": 0.0,
+        "std": 0.7071067690849304
+      },
+      {
+        "feature": "ambient_temperature",
+        "min": 0.1818181872367859,
+        "max": 0.3636363744735718,
+        "mean": 0.27272728085517883,
+        "std": 0.06428243219852448
+      },
+      {
+        "feature": "head_fits_rack1",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.18763889372348785,
+        "std": 0.3904235363006592
+      },
+      {
+        "feature": "head_fits_rack2",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.21361111104488373,
+        "std": 0.40985536575317383
+      },
+      {
+        "feature": "head_fits_rack3",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.244027778506279,
+        "std": 0.4295092821121216
+      },
+      {
+        "feature": "head_fits_rack4",
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.1827777773141861,
+        "std": 0.38648420572280884
+      }
+    ],
+    "all_within_observation_space": true,
+    "actions_by_hottest_rack_temperature": [
+      {
+        "hottest_rack": "< 25 \u00b0C",
+        "steps": 3721,
+        "cooling_pct": {
+          "decrease": 38.37678043536684,
+          "maintain": 32.92125772641763,
+          "increase": 28.701961838215535
+        },
+        "placement_pct": {
+          "place": 53.37274926095136,
+          "delay": 35.743079817253424,
+          "migrate": 10.884170921795217
+        }
+      },
+      {
+        "hottest_rack": "25\u201327 \u00b0C",
+        "steps": 1907,
+        "cooling_pct": {
+          "decrease": 22.49606712113267,
+          "maintain": 49.764027267960145,
+          "increase": 27.739905610907183
+        },
+        "placement_pct": {
+          "place": 60.35658101730467,
+          "delay": 17.252228631358154,
+          "migrate": 22.39119035133718
+        }
+      },
+      {
+        "hottest_rack": "27\u201330 \u00b0C",
+        "steps": 1416,
+        "cooling_pct": {
+          "decrease": 15.53672316384181,
+          "maintain": 52.8954802259887,
+          "increase": 31.56779661016949
+        },
+        "placement_pct": {
+          "place": 55.932203389830505,
+          "delay": 17.16101694915254,
+          "migrate": 26.906779661016948
+        }
+      },
+      {
+        "hottest_rack": "\u2265 30 \u00b0C",
+        "steps": 156,
+        "cooling_pct": {
+          "decrease": 16.025641025641026,
+          "maintain": 54.48717948717948,
+          "increase": 29.48717948717949
+        },
+        "placement_pct": {
+          "place": 75.0,
+          "delay": 18.58974358974359,
+          "migrate": 6.41025641025641
+        }
+      }
+    ],
+    "placement": {
+      "place_steps_with_job_waiting": 1827,
+      "place_steps_on_empty_queue": 2219,
+      "steps_with_job_waiting": 4148,
+      "delay_steps_with_job_waiting": 1702,
+      "chose_coolest_feasible_rack_pct": 51.77887246852764,
+      "chose_least_utilised_feasible_rack_pct": 46.907498631636564,
+      "share_by_rack_pct": {
+        "rack1": 30.32293377120963,
+        "rack2": 20.525451559934318,
+        "rack3": 14.395183360700603,
+        "rack4": 34.75643130815544
+      }
+    },
+    "permutation_sensitivity": [
+      {
+        "feature": "time_sin",
+        "action_change_pct": 30.40277777777778
+      },
+      {
+        "feature": "time_cos",
+        "action_change_pct": 29.51388888888889
+      },
+      {
+        "feature": "cooling_setpoint",
+        "action_change_pct": 28.72222222222222
+      },
+      {
+        "feature": "cooling_delivered",
+        "action_change_pct": 26.666666666666668
+      },
+      {
+        "feature": "head_gpu",
+        "action_change_pct": 23.416666666666668
+      },
+      {
+        "feature": "queue_length",
+        "action_change_pct": 23.180555555555554
+      },
+      {
+        "feature": "rack1_cpu",
+        "action_change_pct": 20.76388888888889
+      },
+      {
+        "feature": "rack4_cpu",
+        "action_change_pct": 20.680555555555554
+      },
+      {
+        "feature": "head_flexible",
+        "action_change_pct": 18.97222222222222
+      },
+      {
+        "feature": "head_urgency",
+        "action_change_pct": 17.13888888888889
+      },
+      {
+        "feature": "rack2_cpu",
+        "action_change_pct": 16.86111111111111
+      },
+      {
+        "feature": "rack3_gpu",
+        "action_change_pct": 16.36111111111111
+      },
+      {
+        "feature": "head_cpu",
+        "action_change_pct": 16.23611111111111
+      },
+      {
+        "feature": "rack1_gpu",
+        "action_change_pct": 15.736111111111112
+      },
+      {
+        "feature": "job_waiting",
+        "action_change_pct": 15.708333333333332
+      },
+      {
+        "feature": "rack3_cpu",
+        "action_change_pct": 15.388888888888888
+      },
+      {
+        "feature": "rack4_gpu",
+        "action_change_pct": 13.88888888888889
+      },
+      {
+        "feature": "rack2_gpu",
+        "action_change_pct": 13.055555555555557
+      },
+      {
+        "feature": "head_fits_rack3",
+        "action_change_pct": 10.861111111111112
+      },
+      {
+        "feature": "rack1_temperature",
+        "action_change_pct": 8.972222222222221
+      },
+      {
+        "feature": "head_fits_rack2",
+        "action_change_pct": 8.805555555555555
+      },
+      {
+        "feature": "carbon_trend",
+        "action_change_pct": 8.76388888888889
+      },
+      {
+        "feature": "head_fits_rack4",
+        "action_change_pct": 8.305555555555555
+      },
+      {
+        "feature": "rack2_temperature",
+        "action_change_pct": 8.208333333333332
+      },
+      {
+        "feature": "rack3_temperature",
+        "action_change_pct": 7.569444444444444
+      },
+      {
+        "feature": "rack4_temperature",
+        "action_change_pct": 7.569444444444444
+      },
+      {
+        "feature": "head_fits_rack1",
+        "action_change_pct": 6.930555555555555
+      },
+      {
+        "feature": "electricity_price",
+        "action_change_pct": 6.583333333333333
+      },
+      {
+        "feature": "carbon_intensity",
+        "action_change_pct": 6.277777777777778
+      },
+      {
+        "feature": "ambient_temperature",
+        "action_change_pct": 6.166666666666667
+      }
+    ]
+  },
+  "q_diagnostics": {
+    "masked": {
+      "all_finite": true,
+      "q_all_actions": {
+        "mean": -6.297154822564788,
+        "std": 2.7344534543980537,
+        "min": -37.61216354370117,
+        "max": -0.6883863210678101
+      },
+      "best_valid_q": {
+        "mean": -6.12453797760937,
+        "std": 2.6266250533937945,
+        "min": -19.556123733520508,
+        "max": -1.679884672164917
+      },
+      "valid_action_spread": {
+        "mean": 0.47786453147729235,
+        "median": 0.2683795690536499,
+        "max": 20.484631538391113
+      },
+      "best_vs_second_gap": {
+        "median": 0.030099034309387207,
+        "pct_below_0.01": 28.180555555555554
+      },
+      "representative_states": [
+        {
+          "hottest_rack_quantile": 0,
+          "step": 1074,
+          "hottest_rack_c": 18.0,
+          "valid_actions": 12,
+          "top_actions": [
+            {
+              "action": "place head job on Rack 4 + maintain cooling",
+              "q": -5.613091945648193
+            },
+            {
+              "action": "place head job on Rack 1 + decrease cooling",
+              "q": -5.660515308380127
+            },
+            {
+              "action": "place head job on Rack 1 + increase cooling",
+              "q": -5.66115140914917
+            }
+          ],
+          "chosen": "place head job on Rack 4 + maintain cooling"
+        },
+        {
+          "hottest_rack_quantile": 25,
+          "step": 1427,
+          "hottest_rack_c": 23.26911735534668,
+          "valid_actions": 18,
+          "top_actions": [
+            {
+              "action": "place head job on Rack 4 + maintain cooling",
+              "q": -4.97283935546875
+            },
+            {
+              "action": "place head job on Rack 1 + decrease cooling",
+              "q": -4.974284648895264
+            },
+            {
+              "action": "place head job on Rack 3 + decrease cooling",
+              "q": -5.041164875030518
+            }
+          ],
+          "chosen": "place head job on Rack 4 + maintain cooling"
+        },
+        {
+          "hottest_rack_quantile": 50,
+          "step": 284,
+          "hottest_rack_c": 25.208314895629883,
+          "valid_actions": 18,
+          "top_actions": [
+            {
+              "action": "place head job on Rack 4 + maintain cooling",
+              "q": -5.107238292694092
+            },
+            {
+              "action": "place head job on Rack 1 + decrease cooling",
+              "q": -5.11796760559082
+            },
+            {
+              "action": "place head job on Rack 1 + increase cooling",
+              "q": -5.179361820220947
+            }
+          ],
+          "chosen": "place head job on Rack 4 + maintain cooling"
+        },
+        {
+          "hottest_rack_quantile": 75,
+          "step": 534,
+          "hottest_rack_c": 26.995296478271484,
+          "valid_actions": 12,
+          "top_actions": [
+            {
+              "action": "delay head job + increase cooling",
+              "q": -7.227273941040039
+            },
+            {
+              "action": "place head job on Rack 4 + increase cooling",
+              "q": -7.247629165649414
+            },
+            {
+              "action": "place head job on Rack 4 + maintain cooling",
+              "q": -7.261011600494385
+            }
+          ],
+          "chosen": "delay head job + increase cooling"
+        },
+        {
+          "hottest_rack_quantile": 100,
+          "step": 1350,
+          "hottest_rack_c": 31.54052734375,
+          "valid_actions": 12,
+          "top_actions": [
+            {
+              "action": "delay head job + increase cooling",
+              "q": -4.656486511230469
+            },
+            {
+              "action": "migrate from hottest rack + maintain cooling",
+              "q": -4.657895565032959
+            },
+            {
+              "action": "migrate from hottest rack + increase cooling",
+              "q": -4.6702728271484375
+            }
+          ],
+          "chosen": "delay head job + increase cooling"
+        }
+      ]
+    },
+    "no mask": {
+      "all_finite": true,
+      "q_all_actions": {
+        "mean": -8.605627770720762,
+        "std": 3.8375319205169034,
+        "min": -65.70051574707031,
+        "max": 15.21815013885498
+      },
+      "best_valid_q": {
+        "mean": -7.717563369149963,
+        "std": 4.2158374158109115,
+        "min": -23.588481903076172,
+        "max": 15.21815013885498
+      },
+      "valid_action_spread": {
+        "mean": 1.8541316982358693,
+        "median": 0.467287540435791,
+        "max": 55.14255619049072
+      },
+      "best_vs_second_gap": {
+        "median": 0.0261690616607666,
+        "pct_below_0.01": 20.125
+      },
+      "representative_states": [
+        {
+          "hottest_rack_quantile": 0,
+          "step": 301,
+          "hottest_rack_c": 18.0,
+          "valid_actions": 15,
+          "top_actions": [
+            {
+              "action": "place head job on Rack 4 + maintain cooling",
+              "q": -12.73428726196289
+            },
+            {
+              "action": "place head job on Rack 2 + maintain cooling",
+              "q": -12.747589111328125
+            },
+            {
+              "action": "delay head job + maintain cooling",
+              "q": -12.776606559753418
+            }
+          ],
+          "chosen": "migrate from hottest rack + increase cooling"
+        },
+        {
+          "hottest_rack_quantile": 25,
+          "step": 540,
+          "hottest_rack_c": 23.004526138305664,
+          "valid_actions": 15,
+          "top_actions": [
+            {
+              "action": "delay head job + maintain cooling",
+              "q": -10.740178108215332
+            },
+            {
+              "action": "delay head job + decrease cooling",
+              "q": -10.951226234436035
+            },
+            {
+              "action": "place head job on Rack 4 + maintain cooling",
+              "q": -11.143590927124023
+            }
+          ],
+          "chosen": "delay head job + maintain cooling"
+        },
+        {
+          "hottest_rack_quantile": 50,
+          "step": 1129,
+          "hottest_rack_c": 24.833202362060547,
+          "valid_actions": 12,
+          "top_actions": [
+            {
+              "action": "place head job on Rack 4 + decrease cooling",
+              "q": -2.9753594398498535
+            },
+            {
+              "action": "place head job on Rack 3 + maintain cooling",
+              "q": -3.029893398284912
+            },
+            {
+              "action": "place head job on Rack 4 + maintain cooling",
+              "q": -3.0472803115844727
+            }
+          ],
+          "chosen": "place head job on Rack 4 + decrease cooling"
+        },
+        {
+          "hottest_rack_quantile": 75,
+          "step": 1107,
+          "hottest_rack_c": 26.010343551635742,
+          "valid_actions": 3,
+          "top_actions": [
+            {
+              "action": "delay head job + maintain cooling",
+              "q": -4.984592914581299
+            },
+            {
+              "action": "delay head job + decrease cooling",
+              "q": -5.063260078430176
+            },
+            {
+              "action": "delay head job + increase cooling",
+              "q": -5.151060581207275
+            }
+          ],
+          "chosen": "place head job on Rack 4 + maintain cooling"
+        },
+        {
+          "hottest_rack_quantile": 100,
+          "step": 1289,
+          "hottest_rack_c": 32.72383117675781,
+          "valid_actions": 12,
+          "top_actions": [
+            {
+              "action": "migrate from hottest rack + increase cooling",
+              "q": -4.401330471038818
+            },
+            {
+              "action": "place head job on Rack 2 + maintain cooling",
+              "q": -4.403751373291016
+            },
+            {
+              "action": "place head job on Rack 4 + maintain cooling",
+              "q": -4.539830207824707
+            }
+          ],
+          "chosen": "migrate from hottest rack + increase cooling"
+        }
+      ]
+    }
+  },
+  "plots": [
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\dqn\\reward.png",
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\dqn\\energy.png",
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\dqn\\carbon.png",
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\dqn\\sla_failures.png",
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\dqn\\critical_minutes.png",
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\dqn\\epsilon.png",
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\dqn\\loss.png",
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\dqn\\mean_q.png",
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\dqn\\invalid_rate.png"
+  ]
+}

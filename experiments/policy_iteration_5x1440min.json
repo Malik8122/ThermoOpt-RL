@@ -1,0 +1,1323 @@
+{
+  "config": {
+    "episode_minutes": 1440,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "start_hour": 8.0,
+    "model_dir": "C:\\Users\\sanya\\ThermoOpt\\models\\policy_iteration",
+    "baselines_file": "C:\\Users\\sanya\\ThermoOpt\\experiments\\baselines_5x1440min.json",
+    "baselines_same_protocol": true
+  },
+  "summary": {
+    "total_reward": {
+      "mean": -1207.9211562156936,
+      "std": 108.48933886749757
+    },
+    "energy_kwh": {
+      "mean": 499.19543587363677,
+      "std": 12.34396987454142
+    },
+    "it_energy_kwh": {
+      "mean": 321.21913999999987,
+      "std": 10.64629655131069
+    },
+    "cooling_energy_kwh": {
+      "mean": 177.97629587363684,
+      "std": 4.261047742072042
+    },
+    "cost_inr": {
+      "mean": 3900.7868973684117,
+      "std": 94.7344851437472
+    },
+    "carbon_kg": {
+      "mean": 217.94766939833244,
+      "std": 5.219960884780976
+    },
+    "mean_temperature_c": {
+      "mean": 21.70723957616244,
+      "std": 0.27253454248236897
+    },
+    "peak_temperature_c": {
+      "mean": 29.070611874684023,
+      "std": 0.676068701754294
+    },
+    "critical_rack_minutes": {
+      "mean": 0.4,
+      "std": 0.894427190999916
+    },
+    "warning_or_worse_rack_minutes": {
+      "mean": 68.8,
+      "std": 24.81330288373557
+    },
+    "sla_failures": {
+      "mean": 191.2,
+      "std": 23.188359148503803
+    },
+    "completed_jobs": {
+      "mean": 241.4,
+      "std": 18.392933425639317
+    },
+    "delayed_jobs": {
+      "mean": 143.0,
+      "std": 12.041594578792296
+    },
+    "mean_completion_minutes": {
+      "mean": 46.440855174761275,
+      "std": 4.814336923582144
+    },
+    "cooling_changes": {
+      "mean": 241.0,
+      "std": 31.312936623702353
+    },
+    "migrations": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "invalid_action_rate": {
+      "mean": 0.1309722222222222,
+      "std": 0.05214487105325406
+    }
+  },
+  "episodes": [
+    {
+      "seed": 42,
+      "total_reward": -1090.9718269091773,
+      "energy_kwh": 481.3801843849323,
+      "it_energy_kwh": 309.0534166666661,
+      "cooling_energy_kwh": 172.32676771826618,
+      "cost_inr": 3766.4545291187515,
+      "carbon_kg": 210.46187235023655,
+      "mean_temperature_c": 21.45751023110859,
+      "peak_temperature_c": 28.93055507768141,
+      "critical_rack_minutes": 0,
+      "warning_or_worse_rack_minutes": 52,
+      "sla_failures": 170,
+      "completed_jobs": 238,
+      "delayed_jobs": 140,
+      "mean_completion_minutes": 45.27312775330397,
+      "cooling_changes": 275,
+      "migrations": 0,
+      "invalid_action_rate": 0.06458333333333334,
+      "reward_by_component": {
+        "energy": -208.2895028588643,
+        "carbon": -116.75029901085608,
+        "thermal": -0.5355180163008362,
+        "sla": -767.9215070231534,
+        "action": -16.175000000000065,
+        "completion": 18.70000000000003
+      }
+    },
+    {
+      "seed": 43,
+      "total_reward": -1266.0901912304264,
+      "energy_kwh": 492.69525367866447,
+      "it_energy_kwh": 312.69026666666446,
+      "cooling_energy_kwh": 180.004987012,
+      "cost_inr": 3855.1288946778805,
+      "carbon_kg": 216.57672084400798,
+      "mean_temperature_c": 21.44023336505238,
+      "peak_temperature_c": 28.271077043480485,
+      "critical_rack_minutes": 0,
+      "warning_or_worse_rack_minutes": 47,
+      "sla_failures": 206,
+      "completed_jobs": 223,
+      "delayed_jobs": 156,
+      "mean_completion_minutes": 50.443396226415096,
+      "cooling_changes": 228,
+      "migrations": 0,
+      "invalid_action_rate": 0.09027777777777778,
+      "reward_by_component": {
+        "energy": -213.18544630326997,
+        "carbon": -120.14241171080317,
+        "thermal": -0.5125285507840588,
+        "sla": -930.5498046655695,
+        "action": -18.699999999999843,
+        "completion": 17.000000000000032
+      }
+    },
+    {
+      "seed": 44,
+      "total_reward": -1336.0526230143425,
+      "energy_kwh": 501.831064288977,
+      "it_energy_kwh": 320.60479999999865,
+      "cooling_energy_kwh": 181.22626428897834,
+      "cost_inr": 3918.2929802266835,
+      "carbon_kg": 220.52635509537714,
+      "mean_temperature_c": 21.686558604684084,
+      "peak_temperature_c": 29.06137608487615,
+      "critical_rack_minutes": 0,
+      "warning_or_worse_rack_minutes": 69,
+      "sla_failures": 219,
+      "completed_jobs": 247,
+      "delayed_jobs": 147,
+      "mean_completion_minutes": 38.91949152542373,
+      "cooling_changes": 269,
+      "migrations": 0,
+      "invalid_action_rate": 0.14097222222222222,
+      "reward_by_component": {
+        "energy": -217.13844127888558,
+        "carbon": -122.33340704255399,
+        "thermal": -0.5642266681908071,
+        "sla": -988.541548024712,
+        "action": -27.024999999999892,
+        "completion": 19.550000000000036
+      }
+    },
+    {
+      "seed": 45,
+      "total_reward": -1098.4241192150794,
+      "energy_kwh": 508.04721131110944,
+      "it_energy_kwh": 333.4884166666693,
+      "cooling_energy_kwh": 174.55879464444016,
+      "cost_inr": 3948.401541808843,
+      "carbon_kg": 217.5711146799588,
+      "mean_temperature_c": 22.072403218680396,
+      "peak_temperature_c": 28.9453666511003,
+      "critical_rack_minutes": 0,
+      "warning_or_worse_rack_minutes": 66,
+      "sla_failures": 165,
+      "completed_jobs": 270,
+      "delayed_jobs": 124,
+      "mean_completion_minutes": 46.8125,
+      "cooling_changes": 234,
+      "migrations": 0,
+      "invalid_action_rate": 0.1798611111111111,
+      "reward_by_component": {
+        "energy": -219.82812027884384,
+        "carbon": -120.69403551033217,
+        "thermal": -1.2118523287086431,
+        "sla": -746.2401110971938,
+        "action": -31.749999999999897,
+        "completion": 21.300000000000054
+      }
+    },
+    {
+      "seed": 46,
+      "total_reward": -1248.067020709443,
+      "energy_kwh": 512.0234657045005,
+      "it_energy_kwh": 330.25880000000086,
+      "cooling_energy_kwh": 181.7646657044997,
+      "cost_inr": 4015.656541009903,
+      "carbon_kg": 224.60228402208156,
+      "mean_temperature_c": 21.879492461286755,
+      "peak_temperature_c": 30.144684516281757,
+      "critical_rack_minutes": 2,
+      "warning_or_worse_rack_minutes": 110,
+      "sla_failures": 196,
+      "completed_jobs": 229,
+      "delayed_jobs": 148,
+      "mean_completion_minutes": 50.755760368663594,
+      "cooling_changes": 199,
+      "migrations": 0,
+      "invalid_action_rate": 0.17916666666666667,
+      "reward_by_component": {
+        "energy": -221.54861496829545,
+        "carbon": -124.59446229035588,
+        "thermal": -3.4883700642364777,
+        "sla": -886.3105733865547,
+        "action": -30.77499999999992,
+        "completion": 18.650000000000034
+      }
+    }
+  ],
+  "comparison": [
+    {
+      "controller": "random",
+      "source": "Step 6 (measured earlier)",
+      "total_reward": {
+        "mean": -1588.2137361501314,
+        "std": 192.91332285930648
+      },
+      "energy_kwh": {
+        "mean": 557.4346597747812,
+        "std": 16.247233906669205
+      },
+      "carbon_kg": {
+        "mean": 240.344096491426,
+        "std": 6.683724640413814
+      },
+      "cost_inr": {
+        "mean": 4297.144948101203,
+        "std": 125.17027570979461
+      },
+      "critical_rack_minutes": {
+        "mean": 716.8,
+        "std": 149.5784075326382
+      },
+      "sla_failures": {
+        "mean": 96.0,
+        "std": 25.10975905897944
+      }
+    },
+    {
+      "controller": "round_robin",
+      "source": "Step 6 (measured earlier)",
+      "total_reward": {
+        "mean": -668.9289836026444,
+        "std": 113.27120614794629
+      },
+      "energy_kwh": {
+        "mean": 614.2559533333279,
+        "std": 10.853302820074408
+      },
+      "carbon_kg": {
+        "mean": 263.02672087765166,
+        "std": 5.101544748180714
+      },
+      "cost_inr": {
+        "mean": 4736.944836010119,
+        "std": 88.0939187223684
+      },
+      "critical_rack_minutes": {
+        "mean": 26.0,
+        "std": 7.0
+      },
+      "sla_failures": {
+        "mean": 56.0,
+        "std": 22.847319317591726
+      }
+    },
+    {
+      "controller": "rule_based",
+      "source": "Step 6 (measured earlier)",
+      "total_reward": {
+        "mean": -687.9500884152023,
+        "std": 116.71473216722026
+      },
+      "energy_kwh": {
+        "mean": 566.6374758436643,
+        "std": 19.68692670352286
+      },
+      "carbon_kg": {
+        "mean": 238.63688949510043,
+        "std": 9.223006063649775
+      },
+      "cost_inr": {
+        "mean": 4409.48426753869,
+        "std": 164.18500920507717
+      },
+      "critical_rack_minutes": {
+        "mean": 24.8,
+        "std": 7.224956747275377
+      },
+      "sla_failures": {
+        "mean": 63.2,
+        "std": 23.28518842526296
+      }
+    },
+    {
+      "controller": "policy_iteration",
+      "source": "Step 7 (this run)",
+      "total_reward": {
+        "mean": -1207.9211562156936,
+        "std": 108.48933886749757
+      },
+      "energy_kwh": {
+        "mean": 499.19543587363677,
+        "std": 12.34396987454142
+      },
+      "carbon_kg": {
+        "mean": 217.94766939833244,
+        "std": 5.219960884780976
+      },
+      "cost_inr": {
+        "mean": 3900.7868973684117,
+        "std": 94.7344851437472
+      },
+      "critical_rack_minutes": {
+        "mean": 0.4,
+        "std": 0.894427190999916
+      },
+      "sla_failures": {
+        "mean": 191.2,
+        "std": 23.188359148503803
+      }
+    }
+  ],
+  "policy_analysis": {
+    "outer_iterations": 6,
+    "converged": true,
+    "evaluation_sweeps_total": 1337,
+    "policy_changes_per_iteration": [
+      129,
+      89,
+      44,
+      20,
+      7,
+      0
+    ],
+    "states": {
+      "total": 144,
+      "modelled": 132,
+      "visited_in_evaluation": 61,
+      "visited_but_unmodelled": []
+    },
+    "action_frequency_in_evaluation": {
+      "place_coolest + decrease cooling": 209,
+      "place_coolest + maintain cooling": 2981,
+      "place_coolest + increase cooling": 208,
+      "place_least_utilised + decrease cooling": 116,
+      "place_least_utilised + maintain cooling": 110,
+      "place_least_utilised + increase cooling": 134,
+      "delay + decrease cooling": 315,
+      "delay + maintain cooling": 2789,
+      "delay + increase cooling": 338
+    },
+    "action_frequency_in_policy_table": {
+      "place_coolest + decrease cooling": 11,
+      "place_coolest + maintain cooling": 16,
+      "place_coolest + increase cooling": 15,
+      "place_least_utilised + decrease cooling": 7,
+      "place_least_utilised + maintain cooling": 13,
+      "place_least_utilised + increase cooling": 16,
+      "delay + decrease cooling": 13,
+      "delay + maintain cooling": 16,
+      "delay + increase cooling": 25
+    },
+    "value_function_modelled_states": {
+      "min": -28.617890255399814,
+      "max": -3.483243841896046,
+      "mean": -8.790270640467412,
+      "std": 4.71723252955058,
+      "n": 132
+    },
+    "most_visited_states": [
+      {
+        "state": 5,
+        "temperature": "LOW",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -5.754328174069116,
+        "evaluation_visits": 1361,
+        "modelled": true
+      },
+      {
+        "state": 55,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -6.212569416154204,
+        "evaluation_visits": 767,
+        "modelled": true
+      },
+      {
+        "state": 2,
+        "temperature": "LOW",
+        "workload": "LOW",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -3.483243841896046,
+        "evaluation_visits": 733,
+        "modelled": true
+      },
+      {
+        "state": 43,
+        "temperature": "MEDIUM",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -3.8062844040566506,
+        "evaluation_visits": 665,
+        "modelled": true
+      },
+      {
+        "state": 19,
+        "temperature": "LOW",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -6.575755863334668,
+        "evaluation_visits": 554,
+        "modelled": true
+      },
+      {
+        "state": 54,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -5.77381553316866,
+        "evaluation_visits": 514,
+        "modelled": true
+      },
+      {
+        "state": 42,
+        "temperature": "MEDIUM",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -3.642713915182666,
+        "evaluation_visits": 360,
+        "modelled": true
+      },
+      {
+        "state": 3,
+        "temperature": "LOW",
+        "workload": "LOW",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -3.743245478894568,
+        "evaluation_visits": 239,
+        "modelled": true
+      },
+      {
+        "state": 67,
+        "temperature": "MEDIUM",
+        "workload": "HIGH",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -7.147236765912496,
+        "evaluation_visits": 238,
+        "modelled": true
+      },
+      {
+        "state": 38,
+        "temperature": "MEDIUM",
+        "workload": "LOW",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 8,
+        "action_name": "delay + increase cooling",
+        "value": -3.955258616882328,
+        "evaluation_visits": 209,
+        "modelled": true
+      }
+    ],
+    "all_visited_states": [
+      {
+        "state": 5,
+        "temperature": "LOW",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -5.754328174069116,
+        "evaluation_visits": 1361,
+        "modelled": true
+      },
+      {
+        "state": 55,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -6.212569416154204,
+        "evaluation_visits": 767,
+        "modelled": true
+      },
+      {
+        "state": 2,
+        "temperature": "LOW",
+        "workload": "LOW",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -3.483243841896046,
+        "evaluation_visits": 733,
+        "modelled": true
+      },
+      {
+        "state": 43,
+        "temperature": "MEDIUM",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -3.8062844040566506,
+        "evaluation_visits": 665,
+        "modelled": true
+      },
+      {
+        "state": 19,
+        "temperature": "LOW",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -6.575755863334668,
+        "evaluation_visits": 554,
+        "modelled": true
+      },
+      {
+        "state": 54,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -5.77381553316866,
+        "evaluation_visits": 514,
+        "modelled": true
+      },
+      {
+        "state": 42,
+        "temperature": "MEDIUM",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -3.642713915182666,
+        "evaluation_visits": 360,
+        "modelled": true
+      },
+      {
+        "state": 3,
+        "temperature": "LOW",
+        "workload": "LOW",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -3.743245478894568,
+        "evaluation_visits": 239,
+        "modelled": true
+      },
+      {
+        "state": 67,
+        "temperature": "MEDIUM",
+        "workload": "HIGH",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -7.147236765912496,
+        "evaluation_visits": 238,
+        "modelled": true
+      },
+      {
+        "state": 38,
+        "temperature": "MEDIUM",
+        "workload": "LOW",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 8,
+        "action_name": "delay + increase cooling",
+        "value": -3.955258616882328,
+        "evaluation_visits": 209,
+        "modelled": true
+      },
+      {
+        "state": 6,
+        "temperature": "LOW",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 6,
+        "action_name": "delay + decrease cooling",
+        "value": -3.5879445637314107,
+        "evaluation_visits": 192,
+        "modelled": true
+      },
+      {
+        "state": 7,
+        "temperature": "LOW",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 0,
+        "action_name": "place_coolest + decrease cooling",
+        "value": -3.7552693458414366,
+        "evaluation_visits": 158,
+        "modelled": true
+      },
+      {
+        "state": 31,
+        "temperature": "LOW",
+        "workload": "HIGH",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -6.802918507541417,
+        "evaluation_visits": 125,
+        "modelled": true
+      },
+      {
+        "state": 18,
+        "temperature": "LOW",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 3,
+        "action_name": "place_least_utilised + decrease cooling",
+        "value": -5.448243324515053,
+        "evaluation_visits": 109,
+        "modelled": true
+      },
+      {
+        "state": 50,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 2,
+        "action_name": "place_coolest + increase cooling",
+        "value": -5.9475521818305985,
+        "evaluation_visits": 86,
+        "modelled": true
+      },
+      {
+        "state": 14,
+        "temperature": "LOW",
+        "workload": "MEDIUM",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -5.059728665220842,
+        "evaluation_visits": 79,
+        "modelled": true
+      },
+      {
+        "state": 39,
+        "temperature": "MEDIUM",
+        "workload": "LOW",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 2,
+        "action_name": "place_coolest + increase cooling",
+        "value": -4.886861979201595,
+        "evaluation_visits": 76,
+        "modelled": true
+      },
+      {
+        "state": 91,
+        "temperature": "HIGH",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 8,
+        "action_name": "delay + increase cooling",
+        "value": -7.4386055153476835,
+        "evaluation_visits": 67,
+        "modelled": true
+      },
+      {
+        "state": 59,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 6,
+        "action_name": "delay + decrease cooling",
+        "value": -6.68297792062123,
+        "evaluation_visits": 57,
+        "modelled": true
+      },
+      {
+        "state": 51,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 5,
+        "action_name": "place_least_utilised + increase cooling",
+        "value": -6.356935664648427,
+        "evaluation_visits": 54,
+        "modelled": true
+      },
+      {
+        "state": 95,
+        "temperature": "HIGH",
+        "workload": "MEDIUM",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 5,
+        "action_name": "place_least_utilised + increase cooling",
+        "value": -6.6364569213541635,
+        "evaluation_visits": 46,
+        "modelled": true
+      },
+      {
+        "state": 21,
+        "temperature": "LOW",
+        "workload": "MEDIUM",
+        "cooling": "HIGH",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 0,
+        "action_name": "place_coolest + decrease cooling",
+        "value": -8.434861783615247,
+        "evaluation_visits": 40,
+        "modelled": true
+      },
+      {
+        "state": 66,
+        "temperature": "MEDIUM",
+        "workload": "HIGH",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -7.095921954304303,
+        "evaluation_visits": 37,
+        "modelled": true
+      },
+      {
+        "state": 53,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 2,
+        "action_name": "place_coolest + increase cooling",
+        "value": -14.212554693813143,
+        "evaluation_visits": 36,
+        "modelled": true
+      },
+      {
+        "state": 89,
+        "temperature": "HIGH",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 4,
+        "action_name": "place_least_utilised + maintain cooling",
+        "value": -11.079677796062882,
+        "evaluation_visits": 36,
+        "modelled": true
+      },
+      {
+        "state": 90,
+        "temperature": "HIGH",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 5,
+        "action_name": "place_least_utilised + increase cooling",
+        "value": -6.382668258110762,
+        "evaluation_visits": 31,
+        "modelled": true
+      },
+      {
+        "state": 15,
+        "temperature": "LOW",
+        "workload": "MEDIUM",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 4,
+        "action_name": "place_least_utilised + maintain cooling",
+        "value": -6.415892979931096,
+        "evaluation_visits": 30,
+        "modelled": true
+      },
+      {
+        "state": 78,
+        "temperature": "HIGH",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -4.16677878628758,
+        "evaluation_visits": 30,
+        "modelled": true
+      },
+      {
+        "state": 58,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 6,
+        "action_name": "delay + decrease cooling",
+        "value": -5.95498880740969,
+        "evaluation_visits": 26,
+        "modelled": true
+      },
+      {
+        "state": 17,
+        "temperature": "LOW",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 4,
+        "action_name": "place_least_utilised + maintain cooling",
+        "value": -8.008290678160607,
+        "evaluation_visits": 21,
+        "modelled": true
+      },
+      {
+        "state": 71,
+        "temperature": "MEDIUM",
+        "workload": "HIGH",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 6,
+        "action_name": "delay + decrease cooling",
+        "value": -8.34410260197922,
+        "evaluation_visits": 20,
+        "modelled": true
+      },
+      {
+        "state": 103,
+        "temperature": "HIGH",
+        "workload": "HIGH",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 8,
+        "action_name": "delay + increase cooling",
+        "value": -9.041414218838678,
+        "evaluation_visits": 20,
+        "modelled": true
+      },
+      {
+        "state": 65,
+        "temperature": "MEDIUM",
+        "workload": "HIGH",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 4,
+        "action_name": "place_least_utilised + maintain cooling",
+        "value": -8.955965898704333,
+        "evaluation_visits": 19,
+        "modelled": true
+      },
+      {
+        "state": 79,
+        "temperature": "HIGH",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 8,
+        "action_name": "delay + increase cooling",
+        "value": -4.621674405922475,
+        "evaluation_visits": 16,
+        "modelled": true
+      },
+      {
+        "state": 107,
+        "temperature": "HIGH",
+        "workload": "HIGH",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -7.965672087658195,
+        "evaluation_visits": 15,
+        "modelled": true
+      },
+      {
+        "state": 101,
+        "temperature": "HIGH",
+        "workload": "HIGH",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -10.575813094404165,
+        "evaluation_visits": 14,
+        "modelled": true
+      },
+      {
+        "state": 45,
+        "temperature": "MEDIUM",
+        "workload": "LOW",
+        "cooling": "HIGH",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -5.85521778163735,
+        "evaluation_visits": 13,
+        "modelled": true
+      },
+      {
+        "state": 9,
+        "temperature": "LOW",
+        "workload": "LOW",
+        "cooling": "HIGH",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 6,
+        "action_name": "delay + decrease cooling",
+        "value": -5.899382423799402,
+        "evaluation_visits": 12,
+        "modelled": true
+      },
+      {
+        "state": 57,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "HIGH",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 8,
+        "action_name": "delay + increase cooling",
+        "value": -11.496565472577487,
+        "evaluation_visits": 12,
+        "modelled": true
+      },
+      {
+        "state": 88,
+        "temperature": "HIGH",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "EMPTY",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -10.344218707125924,
+        "evaluation_visits": 10,
+        "modelled": true
+      },
+      {
+        "state": 41,
+        "temperature": "MEDIUM",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 8,
+        "action_name": "delay + increase cooling",
+        "value": -6.15472503107969,
+        "evaluation_visits": 9,
+        "modelled": true
+      },
+      {
+        "state": 94,
+        "temperature": "HIGH",
+        "workload": "MEDIUM",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 2,
+        "action_name": "place_coolest + increase cooling",
+        "value": -6.267529124833761,
+        "evaluation_visits": 9,
+        "modelled": true
+      },
+      {
+        "state": 33,
+        "temperature": "LOW",
+        "workload": "HIGH",
+        "cooling": "HIGH",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 0,
+        "action_name": "place_coolest + decrease cooling",
+        "value": -9.016815586060792,
+        "evaluation_visits": 6,
+        "modelled": true
+      },
+      {
+        "state": 30,
+        "temperature": "LOW",
+        "workload": "HIGH",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -6.82725434392126,
+        "evaluation_visits": 5,
+        "modelled": true
+      },
+      {
+        "state": 23,
+        "temperature": "LOW",
+        "workload": "MEDIUM",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 6,
+        "action_name": "delay + decrease cooling",
+        "value": -7.260715302999021,
+        "evaluation_visits": 4,
+        "modelled": true
+      },
+      {
+        "state": 29,
+        "temperature": "LOW",
+        "workload": "HIGH",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -8.759475448661302,
+        "evaluation_visits": 4,
+        "modelled": true
+      },
+      {
+        "state": 47,
+        "temperature": "MEDIUM",
+        "workload": "LOW",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 0,
+        "action_name": "place_coolest + decrease cooling",
+        "value": -4.962131056677233,
+        "evaluation_visits": 4,
+        "modelled": true
+      },
+      {
+        "state": 56,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "HIGH",
+        "carbon": "LOW",
+        "queue": "EMPTY",
+        "action": 4,
+        "action_name": "place_least_utilised + maintain cooling",
+        "value": -10.708182957525654,
+        "evaluation_visits": 4,
+        "modelled": true
+      },
+      {
+        "state": 70,
+        "temperature": "MEDIUM",
+        "workload": "HIGH",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 3,
+        "action_name": "place_least_utilised + decrease cooling",
+        "value": -7.0068718308639655,
+        "evaluation_visits": 4,
+        "modelled": true
+      },
+      {
+        "state": 73,
+        "temperature": "HIGH",
+        "workload": "LOW",
+        "cooling": "LOW",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 7,
+        "action_name": "delay + maintain cooling",
+        "value": -4.754653099943451,
+        "evaluation_visits": 4,
+        "modelled": true
+      },
+      {
+        "state": 87,
+        "temperature": "HIGH",
+        "workload": "MEDIUM",
+        "cooling": "LOW",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 8,
+        "action_name": "delay + increase cooling",
+        "value": -8.612844080387749,
+        "evaluation_visits": 4,
+        "modelled": true
+      },
+      {
+        "state": 52,
+        "temperature": "MEDIUM",
+        "workload": "MEDIUM",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "EMPTY",
+        "action": 3,
+        "action_name": "place_least_utilised + decrease cooling",
+        "value": -11.737983089404723,
+        "evaluation_visits": 3,
+        "modelled": true
+      },
+      {
+        "state": 106,
+        "temperature": "HIGH",
+        "workload": "HIGH",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 1,
+        "action_name": "place_coolest + maintain cooling",
+        "value": -7.335086444573768,
+        "evaluation_visits": 3,
+        "modelled": true
+      },
+      {
+        "state": 69,
+        "temperature": "MEDIUM",
+        "workload": "HIGH",
+        "cooling": "HIGH",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 6,
+        "action_name": "delay + decrease cooling",
+        "value": -9.468607810022167,
+        "evaluation_visits": 2,
+        "modelled": true
+      },
+      {
+        "state": 102,
+        "temperature": "HIGH",
+        "workload": "HIGH",
+        "cooling": "MEDIUM",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 5,
+        "action_name": "place_least_utilised + increase cooling",
+        "value": -7.980339573871111,
+        "evaluation_visits": 2,
+        "modelled": true
+      },
+      {
+        "state": 11,
+        "temperature": "LOW",
+        "workload": "LOW",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "PENDING",
+        "action": 6,
+        "action_name": "delay + decrease cooling",
+        "value": -3.9767473340113653,
+        "evaluation_visits": 1,
+        "modelled": true
+      },
+      {
+        "state": 77,
+        "temperature": "HIGH",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 6,
+        "action_name": "delay + decrease cooling",
+        "value": -5.775397218335863,
+        "evaluation_visits": 1,
+        "modelled": true
+      },
+      {
+        "state": 82,
+        "temperature": "HIGH",
+        "workload": "LOW",
+        "cooling": "HIGH",
+        "carbon": "HIGH",
+        "queue": "EMPTY",
+        "action": 0,
+        "action_name": "place_coolest + decrease cooling",
+        "value": -3.9300525657096266,
+        "evaluation_visits": 1,
+        "modelled": true
+      },
+      {
+        "state": 84,
+        "temperature": "HIGH",
+        "workload": "MEDIUM",
+        "cooling": "LOW",
+        "carbon": "LOW",
+        "queue": "EMPTY",
+        "action": 5,
+        "action_name": "place_least_utilised + increase cooling",
+        "value": -10.365582219592387,
+        "evaluation_visits": 1,
+        "modelled": true
+      },
+      {
+        "state": 109,
+        "temperature": "CRITICAL",
+        "workload": "LOW",
+        "cooling": "LOW",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 8,
+        "action_name": "delay + increase cooling",
+        "value": -10.680107516295493,
+        "evaluation_visits": 1,
+        "modelled": true
+      },
+      {
+        "state": 113,
+        "temperature": "CRITICAL",
+        "workload": "LOW",
+        "cooling": "MEDIUM",
+        "carbon": "LOW",
+        "queue": "PENDING",
+        "action": 2,
+        "action_name": "place_coolest + increase cooling",
+        "value": -7.497927927266901,
+        "evaluation_visits": 1,
+        "modelled": true
+      }
+    ]
+  },
+  "plots": [
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\policy_iteration\\value_delta_per_sweep.png",
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\policy_iteration\\policy_changes_per_iteration.png",
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\policy_iteration\\value_distribution.png",
+    "C:\\Users\\sanya\\ThermoOpt\\experiments\\plots\\policy_iteration\\action_frequency.png"
+  ]
+}

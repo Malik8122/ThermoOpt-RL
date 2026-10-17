@@ -1,0 +1,533 @@
+{
+  "config": {
+    "episodes": 10,
+    "episode_minutes": 60,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "start_hour": 8.0
+  },
+  "policies": {
+    "uniform": {
+      "summary": {
+        "total_reward": {
+          "mean": -82.53777740792049,
+          "std": 34.55940567253717
+        },
+        "energy_kwh": {
+          "mean": 28.26779539323274,
+          "std": 3.9345327166210247
+        },
+        "carbon_kg": {
+          "mean": 12.255989985831425,
+          "std": 1.704864632921767
+        },
+        "cost_inr": {
+          "mean": 230.051128154877,
+          "std": 32.04613050740982
+        },
+        "peak_temperature_c": {
+          "mean": 30.36533245774752,
+          "std": 3.249537483554646
+        },
+        "warning_or_worse_rack_minutes": {
+          "mean": 51.7,
+          "std": 65.34362163890894
+        },
+        "critical_rack_minutes": {
+          "mean": 24.4,
+          "std": 38.89073011514298
+        },
+        "sla_failures": {
+          "mean": 7.3,
+          "std": 3.560586718193756
+        },
+        "completed_jobs": {
+          "mean": 11.4,
+          "std": 1.505545305418162
+        },
+        "invalid_action_rate": {
+          "mean": 0.4716666666666667,
+          "std": 0.08959786703810407
+        }
+      },
+      "episodes": [
+        {
+          "seed": 42,
+          "total_reward": -36.75182925398887,
+          "energy_kwh": 26.844540672153638,
+          "carbon_kg": 11.627364920468784,
+          "cost_inr": 218.68892966204336,
+          "peak_temperature_c": 29.898504138186176,
+          "warning_or_worse_rack_minutes": 38,
+          "critical_rack_minutes": 0,
+          "sla_failures": 3,
+          "completed_jobs": 11,
+          "invalid_action_rate": 0.5166666666666667,
+          "reward_by_component": {
+            "energy": -11.615426252374165,
+            "carbon": -6.450091486946443,
+            "thermal": -1.7308174032785832,
+            "sla": -13.580494111389687,
+            "action": -3.775,
+            "completion": 0.4
+          }
+        },
+        {
+          "seed": 43,
+          "total_reward": -121.78453016358326,
+          "energy_kwh": 23.772528737997234,
+          "carbon_kg": 10.305860057902112,
+          "cost_inr": 193.48056108555133,
+          "peak_temperature_c": 35.0780322198797,
+          "warning_or_worse_rack_minutes": 153,
+          "critical_rack_minutes": 75,
+          "sla_failures": 2,
+          "completed_jobs": 10,
+          "invalid_action_rate": 0.2833333333333333,
+          "reward_by_component": {
+            "energy": -10.286190319325737,
+            "carbon": -5.717008168214927,
+            "thermal": -94.59037334270927,
+            "sla": -9.415958333333332,
+            "action": -2.374999999999999,
+            "completion": 0.6000000000000001
+          }
+        },
+        {
+          "seed": 44,
+          "total_reward": -61.17931135382381,
+          "energy_kwh": 31.723235619570197,
+          "carbon_kg": 13.76330867073357,
+          "cost_inr": 258.00322940276806,
+          "peak_temperature_c": 27.188906336430342,
+          "warning_or_worse_rack_minutes": 2,
+          "critical_rack_minutes": 0,
+          "sla_failures": 8,
+          "completed_jobs": 10,
+          "invalid_action_rate": 0.5333333333333333,
+          "reward_by_component": {
+            "energy": -13.726400027698642,
+            "carbon": -7.634971525924683,
+            "thermal": -0.007596025402280926,
+            "sla": -36.31034377479819,
+            "action": -3.9,
+            "completion": 0.4
+          }
+        },
+        {
+          "seed": 45,
+          "total_reward": -137.90993563578695,
+          "energy_kwh": 20.795858893461357,
+          "carbon_kg": 9.031405650486901,
+          "cost_inr": 168.94793386184568,
+          "peak_temperature_c": 35.596833955467964,
+          "warning_or_worse_rack_minutes": 165,
+          "critical_rack_minutes": 95,
+          "sla_failures": 4,
+          "completed_jobs": 13,
+          "invalid_action_rate": 0.43333333333333335,
+          "reward_by_component": {
+            "energy": -8.998208175055394,
+            "carbon": -5.010025323864776,
+            "thermal": -102.70336069053216,
+            "sla": -18.198341446334627,
+            "action": -3.400000000000001,
+            "completion": 0.39999999999999997
+          }
+        },
+        {
+          "seed": 46,
+          "total_reward": -59.583959924208585,
+          "energy_kwh": 29.30946001371742,
+          "carbon_kg": 12.70251718968941,
+          "cost_inr": 238.627010675022,
+          "peak_temperature_c": 27.74377262118477,
+          "warning_or_worse_rack_minutes": 2,
+          "critical_rack_minutes": 0,
+          "sla_failures": 8,
+          "completed_jobs": 11,
+          "invalid_action_rate": 0.5666666666666667,
+          "reward_by_component": {
+            "energy": -12.681977890550797,
+            "carbon": -7.046514713215277,
+            "thermal": -0.021177225131430166,
+            "sla": -36.059290095311084,
+            "action": -3.9250000000000007,
+            "completion": 0.15000000000000002
+          }
+        },
+        {
+          "seed": 47,
+          "total_reward": -77.16212884402526,
+          "energy_kwh": 29.25735390184424,
+          "carbon_kg": 12.684541016053396,
+          "cost_inr": 238.1087472771536,
+          "peak_temperature_c": 31.094932364987407,
+          "warning_or_worse_rack_minutes": 19,
+          "critical_rack_minutes": 4,
+          "sla_failures": 11,
+          "completed_jobs": 9,
+          "invalid_action_rate": 0.6,
+          "reward_by_component": {
+            "energy": -12.659431976759521,
+            "carbon": -7.036542723402398,
+            "thermal": -3.975704513164059,
+            "sla": -49.64044963069925,
+            "action": -4.15,
+            "completion": 0.30000000000000004
+          }
+        },
+        {
+          "seed": 48,
+          "total_reward": -81.64746641746797,
+          "energy_kwh": 29.60942304526749,
+          "carbon_kg": 12.837052167644936,
+          "cost_inr": 240.99214400755386,
+          "peak_temperature_c": 28.367612358307998,
+          "warning_or_worse_rack_minutes": 18,
+          "critical_rack_minutes": 0,
+          "sla_failures": 13,
+          "completed_jobs": 13,
+          "invalid_action_rate": 0.4666666666666667,
+          "reward_by_component": {
+            "energy": -12.81176958689458,
+            "carbon": -7.121145803057471,
+            "thermal": -0.19301985507481842,
+            "sla": -58.74653117244108,
+            "action": -3.525000000000001,
+            "completion": 0.75
+          }
+        },
+        {
+          "seed": 49,
+          "total_reward": -127.09096335437695,
+          "energy_kwh": 26.130233843926234,
+          "carbon_kg": 11.322925214782282,
+          "cost_inr": 212.7675761435373,
+          "peak_temperature_c": 33.374634367423106,
+          "warning_or_worse_rack_minutes": 111,
+          "critical_rack_minutes": 70,
+          "sla_failures": 8,
+          "completed_jobs": 11,
+          "invalid_action_rate": 0.45,
+          "reward_by_component": {
+            "energy": -11.306351182468074,
+            "carbon": -6.281208514117389,
+            "thermal": -69.913307186026,
+            "sla": -36.29009647176541,
+            "action": -3.65,
+            "completion": 0.35
+          }
+        },
+        {
+          "seed": 50,
+          "total_reward": -52.99627905094155,
+          "energy_kwh": 33.851735802469136,
+          "carbon_kg": 14.681952128065841,
+          "cost_inr": 275.40873011644504,
+          "peak_temperature_c": 27.597047828696336,
+          "warning_or_worse_rack_minutes": 1,
+          "critical_rack_minutes": 0,
+          "sla_failures": 6,
+          "completed_jobs": 13,
+          "invalid_action_rate": 0.45,
+          "reward_by_component": {
+            "energy": -14.64738568376069,
+            "carbon": -8.144574035539478,
+            "thermal": -0.014926195717408407,
+            "sla": -27.189393135923975,
+            "action": -3.5999999999999996,
+            "completion": 0.6
+          }
+        },
+        {
+          "seed": 51,
+          "total_reward": -69.27137008100166,
+          "energy_kwh": 31.383583401920426,
+          "carbon_kg": 13.602972842487013,
+          "cost_inr": 255.48641931684986,
+          "peak_temperature_c": 27.71304838691136,
+          "warning_or_worse_rack_minutes": 8,
+          "critical_rack_minutes": 0,
+          "sla_failures": 10,
+          "completed_jobs": 13,
+          "invalid_action_rate": 0.4166666666666667,
+          "reward_by_component": {
+            "energy": -13.57943512583096,
+            "carbon": -7.5460278342198706,
+            "thermal": -0.07153369772541786,
+            "sla": -45.224373423225416,
+            "action": -3.2500000000000004,
+            "completion": 0.39999999999999997
+          }
+        }
+      ]
+    },
+    "valid-only": {
+      "summary": {
+        "total_reward": {
+          "mean": -79.48072334671645,
+          "std": 47.55586527463073
+        },
+        "energy_kwh": {
+          "mean": 28.243523950985974,
+          "std": 2.6133960172173607
+        },
+        "carbon_kg": {
+          "mean": 12.249959881296176,
+          "std": 1.1324458352991236
+        },
+        "cost_inr": {
+          "mean": 229.77017142631712,
+          "std": 21.283061191081014
+        },
+        "peak_temperature_c": {
+          "mean": 31.22112601295391,
+          "std": 2.871364121054382
+        },
+        "warning_or_worse_rack_minutes": {
+          "mean": 80.5,
+          "std": 65.84367007457048
+        },
+        "critical_rack_minutes": {
+          "mean": 31.0,
+          "std": 40.78943218258594
+        },
+        "sla_failures": {
+          "mean": 6.1,
+          "std": 3.142893217686178
+        },
+        "completed_jobs": {
+          "mean": 13.1,
+          "std": 1.5238839267549946
+        },
+        "invalid_action_rate": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "episodes": [
+        {
+          "seed": 42,
+          "total_reward": -30.649687993769227,
+          "energy_kwh": 30.095828029131425,
+          "carbon_kg": 13.04741849385188,
+          "cost_inr": 244.95219675130264,
+          "peak_temperature_c": 29.023792801353864,
+          "warning_or_worse_rack_minutes": 22,
+          "critical_rack_minutes": 0,
+          "sla_failures": 2,
+          "completed_jobs": 12,
+          "invalid_action_rate": 0.0,
+          "reward_by_component": {
+            "energy": -13.022233281835712,
+            "carbon": -7.2378430994000835,
+            "thermal": -0.6016052137178435,
+            "sla": -9.088006398815597,
+            "action": -1.15,
+            "completion": 0.45000000000000007
+          }
+        },
+        {
+          "seed": 43,
+          "total_reward": -32.24728797563019,
+          "energy_kwh": 29.287112665846248,
+          "carbon_kg": 12.707998231362685,
+          "cost_inr": 238.1515539250504,
+          "peak_temperature_c": 31.236973384777038,
+          "warning_or_worse_rack_minutes": 60,
+          "critical_rack_minutes": 7,
+          "sla_failures": 1,
+          "completed_jobs": 11,
+          "invalid_action_rate": 0.0,
+          "reward_by_component": {
+            "energy": -12.672308365029636,
+            "carbon": -7.049555231894981,
+            "thermal": -7.443620807277007,
+            "sla": -4.706803571428572,
+            "action": -1.1250000000000004,
+            "completion": 0.7500000000000001
+          }
+        },
+        {
+          "seed": 44,
+          "total_reward": -121.90342287291706,
+          "energy_kwh": 25.13205698487696,
+          "carbon_kg": 10.893358812122045,
+          "cost_inr": 204.59548800965464,
+          "peak_temperature_c": 34.86940132754284,
+          "warning_or_worse_rack_minutes": 176,
+          "critical_rack_minutes": 73,
+          "sla_failures": 6,
+          "completed_jobs": 14,
+          "invalid_action_rate": 0.0,
+          "reward_by_component": {
+            "energy": -10.874447733840993,
+            "carbon": -6.042913542227465,
+            "thermal": -77.51867843015012,
+            "sla": -27.09238316669844,
+            "action": -1.1750000000000005,
+            "completion": 0.8
+          }
+        },
+        {
+          "seed": 45,
+          "total_reward": -40.109793929712716,
+          "energy_kwh": 31.505322215036106,
+          "carbon_kg": 13.665670529567285,
+          "cost_inr": 256.28987402002366,
+          "peak_temperature_c": 26.622680396259153,
+          "warning_or_worse_rack_minutes": 0,
+          "critical_rack_minutes": 0,
+          "sla_failures": 4,
+          "completed_jobs": 14,
+          "invalid_action_rate": 0.0,
+          "reward_by_component": {
+            "energy": -13.632110573813696,
+            "carbon": -7.580808355899014,
+            "thermal": 0.0,
+            "sla": -18.221875,
+            "action": -1.275,
+            "completion": 0.6
+          }
+        },
+        {
+          "seed": 46,
+          "total_reward": -52.60519423731373,
+          "energy_kwh": 27.743947338650955,
+          "carbon_kg": 12.045068322514272,
+          "cost_inr": 225.47768857307963,
+          "peak_temperature_c": 30.802963759722346,
+          "warning_or_worse_rack_minutes": 74,
+          "critical_rack_minutes": 10,
+          "sla_failures": 5,
+          "completed_jobs": 14,
+          "invalid_action_rate": 0.0,
+          "reward_by_component": {
+            "energy": -12.004592598454739,
+            "carbon": -6.681805652282326,
+            "thermal": -10.541779170446617,
+            "sla": -22.677016816130052,
+            "action": -1.1000000000000003,
+            "completion": 0.4
+          }
+        },
+        {
+          "seed": 47,
+          "total_reward": -116.1146004971181,
+          "energy_kwh": 26.550280328766497,
+          "carbon_kg": 11.503133225210037,
+          "cost_inr": 216.2314086313027,
+          "peak_temperature_c": 33.503450754585444,
+          "warning_or_worse_rack_minutes": 130,
+          "critical_rack_minutes": 59,
+          "sla_failures": 9,
+          "completed_jobs": 11,
+          "invalid_action_rate": 0.0,
+          "reward_by_component": {
+            "energy": -11.48810206533166,
+            "carbon": -6.381175975523317,
+            "thermal": -56.56555988609308,
+            "sla": -40.80476257017004,
+            "action": -1.2750000000000001,
+            "completion": 0.4
+          }
+        },
+        {
+          "seed": 48,
+          "total_reward": -72.24961350028833,
+          "energy_kwh": 32.17887753247501,
+          "carbon_kg": 13.950972758204728,
+          "cost_inr": 261.89894834756444,
+          "peak_temperature_c": 28.430258726519774,
+          "warning_or_worse_rack_minutes": 18,
+          "critical_rack_minutes": 0,
+          "sla_failures": 11,
+          "completed_jobs": 15,
+          "invalid_action_rate": 0.0,
+          "reward_by_component": {
+            "energy": -13.923552778474766,
+            "carbon": -7.739075124743745,
+            "thermal": -0.4402995774503568,
+            "sla": -49.796686019619465,
+            "action": -1.2999999999999996,
+            "completion": 0.95
+          }
+        },
+        {
+          "seed": 49,
+          "total_reward": -57.81588211680246,
+          "energy_kwh": 29.221625572641162,
+          "carbon_kg": 12.672158500901038,
+          "cost_inr": 237.77214938345966,
+          "peak_temperature_c": 29.33106072952849,
+          "warning_or_worse_rack_minutes": 32,
+          "critical_rack_minutes": 0,
+          "sla_failures": 8,
+          "completed_jobs": 12,
+          "invalid_action_rate": 0.0,
+          "reward_by_component": {
+            "energy": -12.643972603546663,
+            "carbon": -7.029673724612265,
+            "thermal": -0.7875735904693122,
+            "sla": -36.30466219817421,
+            "action": -1.5,
+            "completion": 0.45000000000000007
+          }
+        },
+        {
+          "seed": 50,
+          "total_reward": -93.63937883801312,
+          "energy_kwh": 25.828716459400002,
+          "carbon_kg": 11.218790132466584,
+          "cost_inr": 209.8137627885191,
+          "peak_temperature_c": 33.70472326230974,
+          "warning_or_worse_rack_minutes": 114,
+          "critical_rack_minutes": 44,
+          "sla_failures": 7,
+          "completed_jobs": 13,
+          "invalid_action_rate": 0.0,
+          "reward_by_component": {
+            "energy": -11.17588692954808,
+            "carbon": -6.223441271708531,
+            "thermal": -43.917475754733445,
+            "sla": -31.622574882023063,
+            "action": -1.3499999999999999,
+            "completion": 0.6500000000000001
+          }
+        },
+        {
+          "seed": 51,
+          "total_reward": -177.47237150559945,
+          "energy_kwh": 24.89147238303537,
+          "carbon_kg": 10.795029806761208,
+          "cost_inr": 202.51864383321447,
+          "peak_temperature_c": 34.68595498694035,
+          "warning_or_worse_rack_minutes": 179,
+          "critical_rack_minutes": 117,
+          "sla_failures": 8,
+          "completed_jobs": 15,
+          "invalid_action_rate": 0.0,
+          "reward_by_component": {
+            "energy": -10.770348627274913,
+            "carbon": -5.988367126531736,
+            "thermal": -123.48032638335695,
+            "sla": -36.233329368435896,
+            "action": -1.4999999999999991,
+            "completion": 0.5
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,405 @@
+# =============================================================================
+# ThermoOpt-RL — Phase 1 configuration
+#
+# This is the single source of truth for every tunable number in the project.
+# It is loaded and validated by backend/config.py. Unknown keys are rejected,
+# so a typo here fails loudly instead of being silently ignored.
+#
+# Everything here describes a SIMULATED, SCALED-DOWN digital twin. None of these
+# values are measurements from, or claims about, a real data centre.
+#
+# Unit conventions
+#   * Human-facing percentages in this file (utilisation, cooling) are 0-100.
+#     Inside the simulation every utilisation / cooling value is a 0-1 fraction;
+#     the conversion happens once, where the config is read.
+#   * Power in W (per device) or kW (per rack / facility); energy in kWh.
+#   * Carbon in gCO2 (per step) and gCO2/kWh; money in INR (₹).
+#   * Time in simulated minutes.
+# See docs/MODEL_CALIBRATION.md for the equations these parameters feed.
+# =============================================================================
+
+project:
+  name: ThermoOpt-RL
+  phase: 1
+  seed: 42                       # default seed for all stochastic components
+
+paths:                           # relative to the repository root
+  data_dir: data                 # generated datasets (CSV / JSON)
+  models_dir: models             # trained weights, Q-tables, policies
+  experiments_dir: experiments   # training curves, comparison results, plots
+
+# -----------------------------------------------------------------------------
+# Simulation clock
+# -----------------------------------------------------------------------------
+simulation:
+  timestep_minutes: 1            # one simulation step = 1 simulated minute
+  episode_minutes: 1440          # evaluation / demo episode = 24 h
+  train_episode_minutes: 240     # shorter episodes for faster RL training
+  start_hour: 8.0                # clock time (0-24) at reset for evaluation
+  randomize_start_hour_in_training: true   # expose agents to the full daily carbon cycle
+
+# -----------------------------------------------------------------------------
+# Physical layout: 4 racks x (10 servers + 2 GPU nodes) = 40 servers + 8 GPU nodes
+# -----------------------------------------------------------------------------
+datacenter:
+  num_racks: 4
+  rack_names: ["Rack 1", "Rack 2", "Rack 3", "Rack 4"]
+  servers_per_rack: 10
+  gpu_nodes_per_rack: 2
+  cpu_capacity_per_rack: 100     # abstract, integer compute units
+  gpu_capacity_per_rack: 100
+  initial_temperatures_c:      [24.5, 23.8, 28.1, 23.5]
+  initial_cpu_utilisation_pct: [72, 51, 88, 43]
+  initial_gpu_utilisation_pct: [55, 40, 82, 30]
+
+# -----------------------------------------------------------------------------
+# Thermal model (explicit Euler, per rack r, timestep dt minutes):
+#
+#   dT_r/dt = alpha * 100*L_r                  heating from IT load
+#           - beta  * 100*eta_r*C              heat removed by delivered cooling
+#           + kappa * (T_amb(h) - T_r)         Newton exchange with room ambient
+#   T_r(t+dt) = clip(T_r + dt*dT_r/dt + sigma*sqrt(dt)*N(0,1),  min, max)
+#
+#   L_r   = w_cpu*cpu_r + w_gpu*gpu_r    thermal load, fraction 0-1
+#   C     = delivered (lagged) shared cooling level, fraction 0-1
+#   eta_r = rack cooling effectiveness, fraction 0-1
+#   T_amb = ambient_temperature_c + amplitude*cos(2*pi*(h - peak_hour)/24)
+#
+# alpha and beta are per PERCENTAGE POINT (hence the *100): applied to 0-1
+# fractions they would move a fully loaded rack only 0.14 °C above ambient
+# (regression test: tests/test_thermal.py::test_coefficient_units).
+# Steady state: T* = T_amb + 100*(alpha*L - beta*eta*C)/kappa
+# -----------------------------------------------------------------------------
+thermal:
+  alpha: 0.035                   # °C per minute per percentage point of thermal load
+  beta: 0.045                    # °C per minute per percentage point of delivered cooling
+  ambient_coupling: 0.25         # kappa, 1/minute (thermal time constant 1/kappa = 4 min)
+  ambient_temperature_c: 24.0    # daily mean room ambient
+  ambient_daily_amplitude_c: 2.0 # set to 0 for a constant 24 °C ambient
+  ambient_peak_hour: 15.0        # warmest time of day
+  utilisation_weights:
+    cpu: 0.6
+    gpu: 0.4
+  # Fraction of the shared cooling that actually reaches each rack. It scales the
+  # cooling EFFECT only; the electrical cooling power is unaffected. Rack 3 is
+  # modelled at the end of the aisle, furthest from the cooling unit.
+  rack_cooling_effectiveness: [1.0, 1.0, 0.75, 1.0]
+  noise_std_c: 0.05              # per-minute process/sensor noise
+  min_temperature_c: 18.0        # acts as the supply-air floor
+  max_temperature_c: 40.0
+  zones:
+    warning_c: 27.0              # NORMAL < 27 <= WARNING < 30 <= CRITICAL
+    critical_c: 30.0
+
+# -----------------------------------------------------------------------------
+# Cooling model (one shared cooling plant)
+#
+#   Cooling power (kW) = max_cooling_power_kw * C ** power_exponent,  C in 0-1
+#   Response: when the target changes, the delivered level moves LINEARLY from
+#   its current value to the target over response_time_minutes
+#   (C = start + (target - start) * min(1, elapsed / response_time)).
+#
+# SCALED-DOWN SIMULATION PARAMETER: the twin has 40 servers + 8 GPU nodes whose
+# maximum IT power is 25.6 kW, so 16 kW is used as the cooling capacity of this
+# small environment (PUE roughly 1.3-1.6 at typical load). It is not a claim
+# about any real facility. Scale it together with the IT fleet if the twin is
+# enlarged; the original brief's 400 kW would imply a PUE of about 10 here.
+# -----------------------------------------------------------------------------
+cooling:
+  levels_pct: [0, 20, 40, 60, 80, 100]   # discrete set-points for "increase"/"decrease"
+  initial_level_pct: 65
+  max_cooling_power_kw: 16.0
+  power_exponent: 1.0            # 1.0 = linear (brief). 3.0 = fan affinity law.
+  response_time_minutes: 3.0     # time for the delivered level to reach a new target
+
+# -----------------------------------------------------------------------------
+# IT power model, per device, u = utilisation fraction 0-1:
+#   P(u) = P_idle + (P_max - P_idle) * u ** utilisation_exponent     [W]
+# Intra-rack load is assumed to be balanced evenly across a rack's servers
+# (CPU utilisation) and across its GPU nodes (GPU utilisation).
+# -----------------------------------------------------------------------------
+power:
+  server_idle_w: 150
+  server_max_w: 500
+  gpu_idle_w: 100
+  gpu_max_w: 700
+  utilisation_exponent: 1.0      # 1.0 = linear
+
+# -----------------------------------------------------------------------------
+# Workload generator — all distributions are SYNTHETIC simulation assumptions.
+#
+#   Arrivals: Poisson, N ~ Poisson(lambda(h) * dt)
+#     constant:     lambda(h) = mean_rate_per_minute
+#     time_varying: lambda(h) = mean_rate_per_minute * m(h) / mean(m)
+#       m(h) is the periodic interpolation of `profile`, normalised so both
+#       patterns produce the same expected number of jobs per day.
+#   Resources: integer units drawn from a per-type distribution
+#     (uniform | triangular(mode) | beta(a, b) scaled to [min, max]).
+#   Duration: lognormal(mean, std) or uniform, rounded to whole timesteps,
+#     clipped to [min, max].
+#   Deadline = arrival + duration + slack; slack ~ U(strict) or U(flexible).
+# -----------------------------------------------------------------------------
+workloads:
+  arrival:
+    pattern: time_varying        # constant | time_varying
+    mean_rate_per_minute: 0.30   # daily-average arrival rate
+    interpolation: pchip
+    profile:                     # [hour, relative intensity]: LOW night, MEDIUM day, HIGH afternoon peak
+      - [0,  0.50]
+      - [4,  0.40]
+      - [7,  0.70]
+      - [9,  1.00]
+      - [12, 1.20]
+      - [14, 1.40]
+      - [17, 1.30]
+      - [20, 0.90]
+      - [22, 0.70]
+  max_queue_length: 50           # arrivals beyond this are rejected -> FAILED (QUEUE_FULL)
+  strict_slack_minutes: [0, 10]
+  flexible_slack_minutes: [60, 240]
+  priority_probabilities: [0.5, 0.35, 0.15]   # P(priority = 1 low, 2, 3 high)
+  background_remaining_minutes: [10, 120]     # remaining run time of jobs already running at reset
+  types:
+    NORMAL_CPU:
+      probability: 0.50
+      cpu: {distribution: triangular, min: 10, max: 40, mode: 20}
+      gpu: {distribution: uniform, min: 0, max: 0}
+      duration_minutes: {distribution: lognormal, mean: 30, std: 12, min: 5, max: 90}
+      flexible_probability: 0.5
+    GPU_INFERENCE:
+      probability: 0.30
+      cpu: {distribution: triangular, min: 10, max: 30, mode: 15}
+      gpu: {distribution: triangular, min: 20, max: 60, mode: 35}
+      duration_minutes: {distribution: lognormal, mean: 10, std: 4, min: 2, max: 30}
+      flexible_probability: 0.1  # inference is latency sensitive
+    AI_TRAINING:
+      probability: 0.20
+      cpu: {distribution: uniform, min: 20, max: 50}
+      gpu: {distribution: beta, min: 60, max: 100, a: 2.0, b: 2.0}
+      duration_minutes: {distribution: lognormal, mean: 45, std: 15, min: 15, max: 120}
+      flexible_probability: 0.7  # training jobs can usually wait for greener power
+
+# -----------------------------------------------------------------------------
+# Grid signals: SYNTHETIC, illustrative daily profile (not real grid data).
+# Anchor points [hour, price INR/kWh, carbon gCO2/kWh]; the 10:00, 12:00, 14:00
+# and 16:00 anchors are the values from the project brief. The rest complete a
+# plausible day (solar dip in the afternoon, evening peak, coal-heavy night).
+# Interpolated with a periodic shape-preserving (PCHIP) curve, so no overshoot.
+# -----------------------------------------------------------------------------
+grid:
+  interpolation: pchip
+  profile:
+    - [0,  6.80, 480]
+    - [3,  6.20, 500]
+    - [6,  7.00, 470]
+    - [8,  8.00, 440]
+    - [10, 8.50, 420]
+    - [12, 9.20, 450]
+    - [14, 7.10, 310]
+    - [16, 6.50, 250]
+    - [18, 8.80, 380]
+    - [20, 9.50, 520]
+    - [22, 7.80, 500]
+  high_carbon_threshold: 400     # gCO2/kWh; above this, delaying flexible work is worth considering
+
+# -----------------------------------------------------------------------------
+# Gymnasium environment (Step 5)
+#   Action = placement_option * 3 + cooling_option   (6 x 3 = 18 discrete actions)
+#   placement: 0-3 place head-of-queue job on rack 1-4, 4 delay, 5 migrate
+#   cooling:   0 decrease, 1 maintain, 2 increase
+# -----------------------------------------------------------------------------
+environment:
+  invalid_action_penalty: 0.10   # e.g. placing on a rack without capacity
+  queue_normalisation: 20        # queue length that maps to 1.0 in the observation
+  carbon_lookahead_minutes: 60   # carbon trend feature = carbon(t+60) - carbon(t)
+
+# -----------------------------------------------------------------------------
+# Reward (Step 5, backend/rl/reward.py; formulas in docs/RL_ENVIRONMENT.md)
+#   r = -( w_E*E + w_C*C + w_T*TH + w_S*S + w_M*M ) - invalid_penalty*1[invalid]
+#       + completion_bonus * sum(priority of agent-scheduled jobs completed)
+# Each component is normalised to roughly [0, 1] per step before weighting,
+# except the thermal term, which deliberately exceeds 1 in the critical zone.
+# -----------------------------------------------------------------------------
+reward:
+  weights:
+    energy: 0.30
+    carbon: 0.20
+    thermal: 0.30
+    sla: 0.15
+    switching: 0.05              # the "action / migration" component
+  completion_bonus: 0.05         # per completed job, multiplied by priority (1-3)
+  thermal:
+    warning_scale: 1.0           # linear ramp 0 -> 1 across the warning band
+    critical_base: 10.0          # jump when a rack reaches the critical threshold (see design doc §4.5)
+    critical_slope: 2.0          # extra penalty per °C above critical
+  # SLA is an event penalty. Calibrated (Step 5) so that failing a job always costs more than the
+  # energy + carbon penalty of running the largest possible job (~4.25): 0.15 * 30 / 1 = 4.5 per failure.
+  # Otherwise an energy-minimising agent would learn to let jobs miss their deadlines.
+  sla_violation_penalty: 30.0    # per job that FAILED (deadline missed or rejected)
+  sla_delay_penalty: 0.5         # per started job, scaled by the fraction of its slack it waited (0-1);
+                                 # small enough that shifting flexible work to low-carbon hours can pay off
+  sla_normalisation: 1.0         # SLA points per step that map to a penalty of 1.0
+  switching_normalisation: 2.0   # cooling change + migration: max switching events per step
+
+# -----------------------------------------------------------------------------
+# Discretisation for Policy Iteration / Value Iteration / Q-Learning
+#   bins are upper edges; a value v falls in bin i where edge[i-1] <= v < edge[i]
+# -----------------------------------------------------------------------------
+discretisation:
+  temperature_edges_c: [25.0, 27.0, 30.0]  # LOW / MEDIUM / HIGH / CRITICAL (of the hottest rack)
+  workload_edges_pct: [40.0, 70.0]          # LOW / MEDIUM / HIGH (mean utilisation)
+  cooling_edges_pct: [40.0, 70.0]           # LOW / MEDIUM / HIGH (cooling set-point)
+  carbon_edges: [400.0]                     # LOW / HIGH carbon intensity
+  queue_edges: [1]                          # EMPTY / PENDING
+
+# -----------------------------------------------------------------------------
+# Baseline controllers (Step 6, backend/rl/baselines.py; PHASE1_DESIGN §5)
+# All three act on the 30-feature observation and the 18-action primitive space.
+#   random       uniform over the currently valid actions (action mask)
+#   round-robin  cycle racks, skip the ones the head job doesn't fit, hold cooling at cooling_pct
+#   rule-based   carbon-aware delay + thermal-aware placement + threshold cooling (thresholds below);
+#                "high carbon" is grid.high_carbon_threshold
+# -----------------------------------------------------------------------------
+baselines:
+  round_robin:
+    cooling_pct: 60                     # must be one of cooling.levels_pct
+  rule_based:
+    avoid_rack_at_c: 27.0               # don't place on racks at or above this (the WARNING threshold)
+    cooling_increase_above_c: 27.0      # raise cooling one level while any rack is above this
+    cooling_decrease_below_c: 24.0      # lower cooling one level while every rack is below this
+    min_slack_to_delay_minutes: 30      # delay a flexible job only if it can still wait at least this long
+    max_queue_to_delay: 1               # ... and no other job is waiting behind it. A delay uses the step's
+                                        # only placement action and rotates the queue, so delaying with a
+                                        # longer queue starves strict jobs (0-10 min slack). Sweep in
+                                        # docs/BASELINES.md: 0 -> 50 SLA failures/day, 1 -> 59, 3 -> 82.
+
+# -----------------------------------------------------------------------------
+# RL hyperparameters (Steps 7-13)
+# -----------------------------------------------------------------------------
+rl:
+  # Empirical model of the 144-state aggregated MDP (Policy / Value Iteration; docs/POLICY_ITERATION.md §4).
+  # 1. Collect concrete simulator states: run collection_episodes episodes of collection_minutes with a
+  #    uniform-random valid tabular policy and random start hours; every snapshot_interval_minutes, store a
+  #    copy of the simulator under its abstract state (reservoir-sampled, at most max_snapshots_per_state).
+  # 2. For every (state, action): step model_samples_per_state_action freshly reseeded copies once each.
+  #    Successor states with no stored snapshot are added and modelled too (closure).
+  tabular_model:
+    collection_episodes: 30
+    collection_minutes: 240
+    snapshot_interval_minutes: 5
+    max_snapshots_per_state: 50
+  policy_iteration:
+    gamma: 0.95
+    theta: 1.0e-6                # policy-evaluation convergence threshold: max_s |V_new - V_old| < theta
+    max_iterations: 100          # outer (evaluation + improvement) iterations
+    max_evaluation_sweeps: 1000
+    model_samples_per_state_action: 100   # one-step transitions sampled per (s, a) to estimate P(s'|s,a), R(s,a,s')
+    tie_tolerance: 1.0e-4        # Q-values within this are ties; > the evaluation error gamma*theta/(1-gamma) ~ 2e-5
+  # Value Iteration (Step 8) solves the SAME saved empirical model as Policy Iteration: it never samples.
+  # gamma must equal the gamma of that model's Policy Iteration artifact (checked at training time).
+  value_iteration:
+    gamma: 0.95
+    theta: 1.0e-6                # stop when max_s |V_{k+1}(s) - V_k(s)| < theta
+    max_iterations: 1000         # Bellman-optimality sweeps
+    tie_tolerance: 1.0e-4        # same tie tolerance as Policy Iteration
+    model_dir: models/policy_iteration   # where the Step 7 empirical model (model.npz) is read from
+  # Tabular Q-Learning (Step 9, docs/Q_LEARNING.md): learns from env.reset()/env.step() only; never reads the
+  # PI/VI empirical model. Q starts at 0 everywhere.
+  q_learning:
+    learning_rate: 0.1           # alpha, constant
+    gamma: 0.95
+    epsilon_start: 1.0
+    epsilon_min: 0.05
+    epsilon_decay: 0.995         # multiplicative, once per episode: eps_e = max(min, start * decay**e)
+    episodes: 1000               # full training protocol (1000 x 1440 = 1.44 M environment steps)
+    episode_minutes: 1440
+    randomize_start_hour: true   # each training day starts at a random minute (seeded)
+    seed: 42                     # training seed: exploration RNG + per-episode environment seeds
+    tie_tolerance: 1.0e-4        # greedy ties -> lowest action index (as PI/VI)
+  # DQN (Step 10, docs/DQN.md): 30-feature observation -> MLP -> 18 Q-values. Written by hand in PyTorch.
+  dqn:
+    learning_rate: 0.001         # Adam
+    gamma: 0.95
+    batch_size: 64
+    replay_buffer_size: 10000
+    target_update_frequency: 100 # gradient updates between hard target-network syncs
+    epsilon_start: 1.0
+    epsilon_end: 0.05
+    epsilon_decay_steps: 50000   # LINEAR per environment step: eps(t) = max(end, start - (start-end) * t / steps)
+    hidden_sizes: [128, 128]
+    learning_starts: 1000        # replay warm-up: no gradient update before this many stored transitions
+    train_frequency: 1           # one gradient update per environment step after warm-up
+    max_grad_norm: 10.0
+    loss: huber                  # huber (SmoothL1, delta 1) | mse
+    episodes: 300                # full protocol: 300 x 1440 min = 432 000 steps (Q-Learning: 1.44 M; see DQN.md)
+    episode_minutes: 1440
+    randomize_start_hour: true
+    use_action_mask: true        # false = masking ablation: act and bootstrap over all 18 actions
+    truncation_is_terminal: true # target uses d = terminated OR truncated (Step 10 specification)
+    seed: 42
+    device: cpu                  # cpu is the reproducible reference; cuda is used only if requested and available
+    torch_threads: 1             # fastest for this small MLP and keeps CPU runs deterministic
+  # PPO (Step 11, docs/PPO.md): 30-feature observation -> separate actor (18 logits) and critic (1 value) MLPs.
+  # Written by hand in PyTorch: masked categorical policy, GAE, clipped surrogate.
+  ppo:
+    learning_rate: 3.0e-4        # Adam, constant
+    gamma: 0.99                  # note: the value-based agents use 0.95
+    gae_lambda: 0.95
+    clip_epsilon: 0.2
+    entropy_coefficient: 0.01
+    value_coefficient: 0.5       # loss = policy + value_coefficient * 0.5*(return - V)^2 - entropy_coefficient * H
+    max_grad_norm: 0.5
+    rollout_steps: 2048          # environment steps collected between updates
+    update_epochs: 10
+    minibatch_size: 64
+    hidden_sizes: [128, 128]     # tanh activations, orthogonal initialisation
+    total_timesteps: 200000      # design protocol; whole rollouts only: 97 x 2048 = 198 656 steps
+    episode_minutes: 1440
+    randomize_start_hour: true
+    use_action_mask: true        # false = masking ablation: the policy puts probability on all 18 actions
+    normalize_advantages: true   # per minibatch
+    truncation_is_terminal: false  # the 24 h time limit is bootstrapped with V(s_final), not treated as terminal
+    seed: 42
+    device: cpu
+    torch_threads: 1
+  predictive_ppo:
+    total_timesteps: 200000      # all other PPO settings are shared with `ppo`
+
+# -----------------------------------------------------------------------------
+# Temperature prediction (LSTM / GRU, Step 12)
+# -----------------------------------------------------------------------------
+prediction:
+  architecture: lstm             # lstm | gru
+  sequence_length: 10
+  horizons_minutes: [5, 10, 15]
+  # Per rack, per minute. cooling_level = cooling the rack actually receives (delivered level x effectiveness).
+  features: [temperature, cpu_utilisation, gpu_utilisation, it_power, cooling_level, queue_length]
+  hidden_size: 64
+  num_layers: 2
+  dropout: 0.1
+  learning_rate: 0.001
+  batch_size: 128
+  epochs: 30
+  dataset_episodes: 20           # simulated days of history generated for training
+  split: [0.7, 0.15, 0.15]       # train / validation / test: whole days, in order (14 / 3 / 3)
+  # Who drives the twin while the history is recorded; day i uses behaviour_policies[i % len]. A mix gives the
+  # forecaster both erratic and sensible cooling/placement patterns. `ppo` = the Step 11 model, sampled.
+  behaviour_policies: [random, round_robin, rule_based, ppo]
+  seed: 42
+  torch_threads: 1
+
+# -----------------------------------------------------------------------------
+# Experimental comparison (Step 14)
+# -----------------------------------------------------------------------------
+evaluation:
+  seeds: [42, 43, 44, 45, 46]    # every controller sees the same 5 simulated days
+  episode_minutes: 1440
+
+# -----------------------------------------------------------------------------
+# Backend API (Step 15)
+# -----------------------------------------------------------------------------
+api:
+  host: 127.0.0.1
+  port: 8000
+  cors_origins: ["http://localhost:5173", "http://127.0.0.1:5173"]
+  websocket_tick_ms: 500         # real-time delay between simulated minutes when running

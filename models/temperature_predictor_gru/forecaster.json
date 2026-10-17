@@ -1,0 +1,128 @@
+{
+ "feature_names": [
+  "temperature",
+  "cpu_utilisation",
+  "gpu_utilisation",
+  "it_power",
+  "cooling_level",
+  "queue_length"
+ ],
+ "horizons_minutes": [
+  5,
+  10,
+  15
+ ],
+ "sequence_length": 10,
+ "architecture": "gru",
+ "hidden_size": 64,
+ "num_layers": 2,
+ "dropout": 0.1,
+ "seed": 42,
+ "target": "temperature change from the last input frame, \u00b0C",
+ "x_mean": [
+  22.587942123413086,
+  0.46162351965904236,
+  0.5063002109527588,
+  3.926837682723999,
+  0.5030502080917358,
+  1.7955741882324219
+ ],
+ "x_std": [
+  3.691126585006714,
+  0.27958574891090393,
+  0.3707858622074127,
+  1.2767833471298218,
+  0.2663673460483551,
+  2.228391408920288
+ ],
+ "y_std": [
+  2.6552577018737793,
+  3.3197736740112305,
+  3.4490227699279785
+ ],
+ "parameters": 38979,
+ "weights": "forecaster.pt",
+ "training": {
+  "train_days": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13
+  ],
+  "val_days": [
+   14,
+   15,
+   16
+  ],
+  "test_days": [
+   17,
+   18,
+   19
+  ],
+  "train_windows": 79352,
+  "val_windows": 17004,
+  "epochs": 30,
+  "batch_size": 128,
+  "learning_rate": 0.001,
+  "best_epoch": 4,
+  "best_val_loss": 0.693224310874939,
+  "seconds": 650.1496617000012,
+  "torch_version": "2.14.0+cpu",
+  "day_policies": [
+   "random",
+   "round_robin",
+   "rule_based",
+   "ppo",
+   "random",
+   "round_robin",
+   "rule_based",
+   "ppo",
+   "random",
+   "round_robin",
+   "rule_based",
+   "ppo",
+   "random",
+   "round_robin",
+   "rule_based",
+   "ppo",
+   "random",
+   "round_robin",
+   "rule_based",
+   "ppo"
+  ],
+  "day_seeds": [
+   2697931682,
+   1081905548,
+   3960938684,
+   3782950298,
+   1642932506,
+   240974754,
+   1446074052,
+   2397399101,
+   2411633421,
+   1477193890,
+   3541778234,
+   2874673549,
+   2433673459,
+   1503401179,
+   1485681952,
+   4094290768,
+   325446014,
+   492086062,
+   2437299435,
+   1812439011
+  ],
+  "history_file": "C:\\Users\\sanya\\ThermoOpt\\data\\temperature_history.npz",
+  "training_csv": "C:\\Users\\sanya\\ThermoOpt\\experiments\\temperature_predictor_gru_training.csv"
+ }
+}
